@@ -1,0 +1,6 @@
+framework module Pods_Appointment_LookupTests {
+  umbrella header "Pods-Appointment LookupTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
