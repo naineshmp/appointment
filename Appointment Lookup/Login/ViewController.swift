@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 import LocalAuthentication
 
 class ViewController: UIViewController {
@@ -53,7 +54,7 @@ class ViewController: UIViewController {
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
                         if Auth.auth().currentUser?.email == "admin@test.com" {
-                            self.authenticationCheck()
+                            //self.authenticationCheck()
                         } else {
                             self.performSegue(withIdentifier: "toMenu", sender: nil)
                         }
@@ -82,33 +83,33 @@ class ViewController: UIViewController {
      //   self.performSegue(withIdentifier: "toForgotPassword", sender: nil)
     }
     
-    func authenticationCheck() {
-        let authenticationContext = LAContext()
-        var error: NSError?
-        
-        guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-            
-            //alert if no biometric sensors found
-            showAlertWithTitle("Error", "This device does not have FaceID/TouchID Sensor.")
-            return
-        }
-        
-        authenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Confirm you are the Administrator", reply: { [unowned self] (success, error) -> Void in
-            
-            if success {
-                DispatchQueue.main.async() { () -> Void in
-                    self.performSegue(withIdentifier: "toAdmin", sender: nil)
-                }
-            }
-            else {
-                if let error = error {
-                    let message = self.errorMessageForLAErrorCode((error as NSError).code)
-                    self.showAlertWithTitle("Error", message)
-                }
-            }
-            
-        })
-    }
+//    func authenticationCheck() {
+//        let authenticationContext = LAContext()
+//        var error: NSError?
+//
+//        guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+//
+//            //alert if no biometric sensors found
+//            showAlertWithTitle("Error", "This device does not have FaceID/TouchID Sensor.")
+//            return
+//        }
+//
+//        authenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Confirm you are the Administrator", reply: { [unowned self] (success, error) -> Void in
+//
+//            if success {
+//                DispatchQueue.main.async() { () -> Void in
+//                    self.performSegue(withIdentifier: "toAdmin", sender: nil)
+//                }
+//            }
+//            else {
+//                if let error = error {
+//                    let message = self.errorMessageForLAErrorCode((error as NSError).code)
+//                    self.showAlertWithTitle("Error", message)
+//                }
+//            }
+//
+//        })
+//    }
     
     func showAlertWithTitle(_ title: String, _ message: String) {
         

@@ -2,7 +2,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-//import FirebaseDatabase
+import FirebaseDatabase
 
 class RegisterBusinessController: UIViewController {
     
@@ -16,14 +16,22 @@ class RegisterBusinessController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //Button Connections
+    
+    
+    //Button Connections@IBOutlet weak var nameRegisterTextField: UITextField!
     @IBOutlet weak var emailRegisterField: UITextField!
     @IBOutlet weak var passwordRegisterField: UITextField!
     @IBOutlet weak var passwordRepeatRegisterField: UITextField!
     
+    @IBOutlet weak var nameRegisterTextField: UITextField!
+    
+    @IBOutlet weak var phoneRegisterField: UITextField!
+    
     var userName: String?
     var passWord: String?
     var passWordRepeat: String?
+    var ref: DatabaseReference!
+    var businessUser = BusinessUser()
     
     @IBAction func registerButton(_ sender: UIButton) {
         userName = emailRegisterField.text!
@@ -46,6 +54,22 @@ class RegisterBusinessController: UIViewController {
         }
     }
     
+    func addUser(){
+        ref = Database.database().reference()
+        let reference = ref.child("businessUsers")
+        let key = reference.childByAutoId().key;
+        //creating artist with the given values
+        let user = ["id":key,
+                    "name": self.nameRegisterTextField.text!,
+                    "email": self.userName!,
+                    "phone":self.phoneRegisterField.text!,
+        ]
+        print("User added to Database")
+        reference.child(key).setValue(user)
+        
+    }
+    
+    
     //function to add username and password to the database
     func registerUser() {
         
@@ -55,7 +79,9 @@ class RegisterBusinessController: UIViewController {
                 
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
-                        self.performSegue(withIdentifier: "registerToMenu", sender: nil)
+                
+                        print("Success-------")
+                        self.addUser()
                     }
                 }
                 

@@ -428,8 +428,10 @@
                     <navigationItem key="navigationItem" title="Register New Business" id="h6v-c0-Xvs"/>
                     <connections>
                         <outlet property="emailRegisterField" destination="91H-12-JtP" id="5w8-S4-ZHa"/>
+                        <outlet property="nameRegisterTextField" destination="YIg-Tr-HGJ" id="6Yr-UB-heI"/>
                         <outlet property="passwordRegisterField" destination="Ma7-Ez-6Rf" id="5Yg-zI-223"/>
                         <outlet property="passwordRepeatRegisterField" destination="orO-cQ-LM1" id="uIs-do-Ph2"/>
+                        <outlet property="phoneRegisterField" destination="Qcz-DP-Bgi" id="reL-sy-Zso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hru-ZP-MbS" userLabel="First Responder" sceneMemberID="firstResponder"/>

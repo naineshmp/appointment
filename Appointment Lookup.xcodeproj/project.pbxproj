@@ -14,6 +14,7 @@
 		3E808BF51FD2745B0079E83F /* Appointment_LookupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E808BF41FD2745B0079E83F /* Appointment_LookupTests.swift */; };
 		3E808C001FD2745B0079E83F /* Appointment_LookupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E808BFF1FD2745B0079E83F /* Appointment_LookupUITests.swift */; };
 		3EA015BA1FD4A6F4000AC28D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */; };
+		3EA144D41FD4FA900020FA2D /* BusinessUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA144D31FD4FA900020FA2D /* BusinessUser.swift */; };
 		3ECD46031FD4BFC3001B5FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */; };
 		3ECD46091FD4C2DC001B5FD2 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46051FD4C2DC001B5FD2 /* Menu.swift */; };
 		3ECD460A1FD4C2DC001B5FD2 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */; };
@@ -59,6 +60,7 @@
 		3E808BFF1FD2745B0079E83F /* Appointment_LookupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment_LookupUITests.swift; sourceTree = "<group>"; };
 		3E808C011FD2745B0079E83F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3EA144D31FD4FA900020FA2D /* BusinessUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUser.swift; sourceTree = "<group>"; };
 		3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3ECD46051FD4C2DC001B5FD2 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */,
 				3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */,
 				3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */,
+				3EA144D31FD4FA900020FA2D /* BusinessUser.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA144D41FD4FA900020FA2D /* BusinessUser.swift in Sources */,
 				3E808BDE1FD2745B0079E83F /* AppDelegate.swift in Sources */,
 				3ECD460B1FD4C2DC001B5FD2 /* About.swift in Sources */,
 				3ECD460A1FD4C2DC001B5FD2 /* PasswordController.swift in Sources */,
