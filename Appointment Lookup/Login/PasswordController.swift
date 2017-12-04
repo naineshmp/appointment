@@ -1,10 +1,3 @@
-//
-//  PasswordController.swift
-//  test
-//
-//  Created by Dominic Heaton on 13/10/2017.
-//  Copyright © 2017 Dominic Heaton. All rights reserved.
-//
 
 import UIKit
 import Firebase
