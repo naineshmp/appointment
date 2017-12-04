@@ -39,10 +39,10 @@ class FirstViewController: UIViewController {
                     
                     //Print into the console if successfully logged in
                     print("You have successfully logged in")
-                    
-                    //Go to the HomeViewController if the login is sucessful
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                    self.present(vc!, animated: true, completion: nil)
+//
+//                    //Go to the HomeViewController if the login is sucessful
+//                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
+//                    self.present(vc!, animated: true, completion: nil)
                     
                 } else {
                     
