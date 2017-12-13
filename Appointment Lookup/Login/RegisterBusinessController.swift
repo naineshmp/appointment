@@ -22,9 +22,7 @@ class RegisterBusinessController: UIViewController {
     @IBOutlet weak var emailRegisterField: UITextField!
     @IBOutlet weak var passwordRegisterField: UITextField!
     @IBOutlet weak var passwordRepeatRegisterField: UITextField!
-    
     @IBOutlet weak var nameRegisterTextField: UITextField!
-    
     @IBOutlet weak var phoneRegisterField: UITextField!
     
     var userName: String?
@@ -34,6 +32,7 @@ class RegisterBusinessController: UIViewController {
     var businessUser = BusinessUser()
     
     @IBAction func registerButton(_ sender: UIButton) {
+        
         userName = emailRegisterField.text!
         passWord = passwordRegisterField.text!
         passWordRepeat = passwordRepeatRegisterField.text!
@@ -56,17 +55,17 @@ class RegisterBusinessController: UIViewController {
     
     func addUser(){
         ref = Database.database().reference()
-        let reference = ref.child("businessUsers")
+        let reference = ref.child("users")
         let key = reference.childByAutoId().key;
         //creating artist with the given values
         let user = ["id":key,
                     "name": self.nameRegisterTextField.text!,
                     "email": self.userName!,
                     "phone":self.phoneRegisterField.text!,
-        ]
+                    "isBusiness": true
+            ] as [String : Any]
         print("User added to Database")
         reference.child(key).setValue(user)
-        
     }
     
     
@@ -79,7 +78,7 @@ class RegisterBusinessController: UIViewController {
                 
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
-                
+                        self.performSegue(withIdentifier: "businessUsertoHome", sender: nil)
                         print("Success-------")
                         self.addUser()
                     }

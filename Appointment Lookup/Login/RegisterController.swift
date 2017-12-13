@@ -27,7 +27,10 @@ class RegisterController: UIViewController {
     @IBOutlet weak var emailRegisterField: UITextField!
     @IBOutlet weak var passwordRegisterField: UITextField!
     @IBOutlet weak var passwordRepeatRegisterField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     
+    var ref: DatabaseReference!
     var userName: String?
     var passWord: String?
     var passWordRepeat: String?
@@ -53,6 +56,21 @@ class RegisterController: UIViewController {
         }
     }
     
+    func addUser(){
+        ref = Database.database().reference()
+        let reference = ref.child("users")
+        let key = reference.childByAutoId().key;
+        //creating artist with the given values
+        let user = ["id":key,
+                    "name": self.usernameTextField.text!,
+                    "email": self.userName!,
+                    "phone":self.phoneTextField.text!,
+                    "isBusiness": false
+            ] as [String : Any]
+        print("Customer added to Database")
+        reference.child(key).setValue(user)
+    }
+    
     //function to add username and password to the database
     func registerUser() {
         
@@ -62,7 +80,8 @@ class RegisterController: UIViewController {
                 
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
-                        self.performSegue(withIdentifier: "registerToMenu", sender: nil)
+                        self.addUser()
+                        self.performSegue(withIdentifier: "userToHome", sender: nil)
                     }
                 }
                 
