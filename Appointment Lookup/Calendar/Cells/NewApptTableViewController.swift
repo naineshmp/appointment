@@ -15,9 +15,6 @@ class NewApptTableViewController: UITableViewController {
     
  
     let formatter = DateFormatter()
-    
-  
-    
     var calendarViewHidden = true
     var appointmentScrolled = false
     
@@ -29,11 +26,11 @@ class NewApptTableViewController: UITableViewController {
     
     
     
-    
+    var time = ""
     
     @IBOutlet var calendarView: JTAppleCalendarView!
     @IBOutlet weak var timeSlotLabel: UILabel!
-    @IBOutlet weak var patientLabel: UILabel!
+    
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var costTextField: UITextField!
     @IBOutlet weak var dateDetailLabel: UILabel!

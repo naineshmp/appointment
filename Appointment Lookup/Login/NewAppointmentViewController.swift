@@ -13,13 +13,14 @@ import FirebaseAuth
 class NewAppointmentViewController: UIViewController {
     
     @IBOutlet weak var NameTextField: UITextField!
-    var ref: DatabaseReference!
+    var ref: DatabaseReference! = Database.database().reference()
     var keyString: String = "NULL"
     @IBOutlet weak var ChargeTextField: UITextField!
     @IBOutlet weak var timeAndDateSelector: UIDatePicker!
     @IBOutlet weak var NotesTextArea: UITextView!
     @IBOutlet weak var PhoneTextField: UITextField!
     
+    var timeSelected = ""
     @IBAction func addAppointment(_ sender: Any) {
         let name = NameTextField.text!
         let charge: Double? = Double(ChargeTextField.text!) ?? 0.0

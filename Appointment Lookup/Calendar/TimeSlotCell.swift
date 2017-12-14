@@ -9,7 +9,7 @@
 import UIKit
 
 class TimeSlotCell: UICollectionViewCell {
-  
-  @IBOutlet weak var timeLabel: UILabel!
-  
+    
+    @IBOutlet weak var timeSlotButton: UIButton!
+    
 }

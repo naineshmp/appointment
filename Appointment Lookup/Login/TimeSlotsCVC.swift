@@ -26,17 +26,13 @@ class TimeSlotsCVC: UICollectionViewController {
     var TimeSlotList = Array<TimeSlot>()
     var ref: DatabaseReference!
     var keyString: String = "NULL"
-    
+    var selectedTime = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         print(appointmentDate)
         setupTimeSlotter()
         navBarDropShadow()
         ref = Database.database().reference()
-        let timeSlot = TimeSlot()
-        timeSlot.time = "8.00"
-        timeSlot.slot = 10
-        self.TimeSlotList.append(timeSlot)
         print(self.keyString)
          self.getKeyString()
     }
@@ -47,7 +43,19 @@ class TimeSlotsCVC: UICollectionViewController {
     }
    
     
-    
+    @IBAction func SetTime(_ sender: UIButton) {
+        selectedTime = (sender.titleLabel?.text!)!
+        performSegue(withIdentifier: "toNewAppointment", sender: sender)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewAppointment" {
+            if let toViewController = segue.destination as? NewAppointmentViewController {
+                var button =
+                toViewController.timeSelected = self.selectedTime
+                print(toViewController.timeSelected)
+            }
+        }
+    }
     
     public func getKeyString(){
         print("--started;;-")
@@ -130,16 +138,17 @@ class TimeSlotsCVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TimeSlotCell
         
         if cell.isSelected {
-            cell.timeSlotView.backgroundColor = UIColor(red: 205, green: 141, blue: 254, alpha: 1)
-            cell.timeLabel.textColor = .white
+//            cell.timeSlotView.backgroundColor = UIColor(red: 205, green: 141, blue: 254, alpha: 1)
+    cell.timeSlotButton.titleLabel?.textColor = .white
         }
         
         if(TimeSlotList.count>0)
         {
         //let timeSlot =/ timeSlots[indexPath.row]
         formatter.dateFormat = "H:mm"
-        cell.timeLabel.text = TimeSlotList[indexPath.row].time
-        print("----" , self.TimeSlotList.count)
+        cell.timeSlotButton.setTitle(TimeSlotList[indexPath.row].time, for: UIControlState.normal)
+        
+        print("----" , TimeSlotList[indexPath.row].time)
         }
         return cell
     }
