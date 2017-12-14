@@ -14,4 +14,3 @@ class CalendarDayCell: JTAppleCell {
   @IBOutlet weak var selectedView: UIView!
   
 }
-
