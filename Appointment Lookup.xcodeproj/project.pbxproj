@@ -210,6 +210,7 @@
 		3ECD46041FD4C012001B5FD2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */,
 				3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */,
 				3ECD46071FD4C2DC001B5FD2 /* About.swift */,
 				3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */,
@@ -243,7 +244,6 @@
 				3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */,
 				3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */,
 				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
-				3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */,
 				3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */,
 			);
 			path = Cells;

@@ -26,17 +26,13 @@ class TimeSlotsCVC: UICollectionViewController {
     var TimeSlotList = Array<TimeSlot>()
     var ref: DatabaseReference!
     var keyString: String = "NULL"
-    
+    var selectedTime = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         print(appointmentDate)
         setupTimeSlotter()
         navBarDropShadow()
         ref = Database.database().reference()
-        let timeSlot = TimeSlot()
-        timeSlot.time = "8.00"
-        timeSlot.slot = 10
-        self.TimeSlotList.append(timeSlot)
         print(self.keyString)
          self.getKeyString()
     }
@@ -47,7 +43,19 @@ class TimeSlotsCVC: UICollectionViewController {
     }
    
     
-    
+    @IBAction func SetTime(_ sender: UIButton) {
+        selectedTime = (sender.titleLabel?.text!)!
+        performSegue(withIdentifier: "toNewAppointment", sender: sender)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toNewAppointment" {
+            if let toViewController = segue.destination as? NewApptTableViewController {
+               
+                toViewController.selectedTime = self.selectedTime
+                print(toViewController.selectedTime)
+            }
+        }
+    }
     
     public func getKeyString(){
         print("--started;;-")
@@ -137,8 +145,9 @@ class TimeSlotsCVC: UICollectionViewController {
         {
         //let timeSlot =/ timeSlots[indexPath.row]
         formatter.dateFormat = "H:mm"
-        cell.timeLabel.text = TimeSlotList[indexPath.row].time
-        print("----" , self.TimeSlotList.count)
+        cell.timeSlotButton.setTitle(TimeSlotList[indexPath.row].time, for: UIControlState.normal)
+        
+        print("----" , TimeSlotList[indexPath.row].time)
         }
         return cell
     }
@@ -148,13 +157,7 @@ class TimeSlotsCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("this one selected")
-        //    if let destinationVC = self.navigationController?.viewControllers[0] as?  NewApptTableViewController {
-        //      destinationVC.selectedTimeSlot = timeSlots[indexPath.row]
-        //      self.navigationController?.popViewController(animated: true)
-        //    } else if let destinationVC = self.navigationController?.viewControllers[0] as? UpdateApptTVC {
-        //      destinationVC.selectedTimeSlot = timeSlots[indexPath.row]
-        //      self.navigationController?.popViewController(animated: true)
-        //    }
+        
     }
     
 }
