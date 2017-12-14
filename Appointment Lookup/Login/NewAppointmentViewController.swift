@@ -73,7 +73,7 @@ class NewAppointmentViewController: UIViewController {
                         if(appointment > 0)
                         {
                             self.updateTimeSlot(date,times,appointment - 1)
-                            let appointmentKey = self.ref.childByAutoId().key;
+                            //let appointmentKey = self.ref.childByAutoId().key;
                             let appointment = [ "name": name,
                                                 "notes": notes,
                                                 "charge": charge,

@@ -1041,34 +1041,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="116" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2We-TS-UOu" customClass="CardView" customModule="Appointment_Lookup" customModuleProvider="target">
-                                            <rect key="frame" x="4" y="0.0" width="108" height="40"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoQ-GX-ilM">
-                                                    <rect key="frame" x="32" y="10" width="43.5" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="aoQ-GX-ilM" firstAttribute="centerX" secondItem="2We-TS-UOu" secondAttribute="centerX" id="7th-kD-ZAg"/>
-                                                <constraint firstItem="aoQ-GX-ilM" firstAttribute="centerY" secondItem="2We-TS-UOu" secondAttribute="centerY" id="wzt-vf-PP1"/>
-                                            </constraints>
-                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whz-R3-EVG">
+                                            <rect key="frame" x="37" y="16" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="2We-TS-UOu" firstAttribute="top" secondItem="f2g-dx-RHD" secondAttribute="top" id="H0A-Tv-CMt"/>
-                                    <constraint firstAttribute="trailing" secondItem="2We-TS-UOu" secondAttribute="trailing" constant="4" id="IJm-XI-0Ak"/>
-                                    <constraint firstItem="2We-TS-UOu" firstAttribute="leading" secondItem="f2g-dx-RHD" secondAttribute="leading" constant="4" id="Yj5-SY-bpY"/>
-                                    <constraint firstAttribute="bottom" secondItem="2We-TS-UOu" secondAttribute="bottom" constant="12" id="gUa-5n-7PO"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="timeLabel" destination="aoQ-GX-ilM" id="gQq-sl-vcb"/>
-                                    <outlet property="timeSlotView" destination="2We-TS-UOu" id="8Wh-et-6Qh"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="L2w-6Z-tJY">
@@ -1080,10 +1061,13 @@
                             <outlet property="delegate" destination="EHL-GY-AWE" id="Ds0-tr-1gs"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <outlet property="calendarView" destination="81D-MS-WdA" id="pJ2-KA-b6K"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faC-x0-ccB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3175" y="1834"/>
+            <point key="canvasLocation" x="3173.5999999999999" y="1833.7331334332835"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="arL-rJ-bNc">

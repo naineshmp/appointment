@@ -14,6 +14,7 @@ class TimeSlotsCVC: UICollectionViewController {
     
     private let reuseIdentifier = "TimeSlotCell"
     
+    @IBOutlet var calendarView: UICollectionView!
     
     var timeSlotter = TimeSlotter()
     var appointmentDate: Date!
@@ -37,14 +38,14 @@ class TimeSlotsCVC: UICollectionViewController {
         timeSlot.slot = 10
         self.TimeSlotList.append(timeSlot)
         print(self.keyString)
+         self.getKeyString()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         navBarNoShadow()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        getKeyString()    }
+   
     
     
     
@@ -59,7 +60,6 @@ class TimeSlotsCVC: UICollectionViewController {
                         self.keyString = each.key
                         print("key selected")
                         self.getAllTimeSlots()
-                        return
                     }
                 }
             }
@@ -67,7 +67,6 @@ class TimeSlotsCVC: UICollectionViewController {
     }
     
     public func getAllTimeSlots(){
-        getKeyString()
         self.TimeSlotList.removeAll()
         print("started with keystring", self.keyString )
         ref.child("timeSlots").child(self.keyString).child("12-21-2017").observeSingleEvent(of: .value, with: { (snapShot) in
@@ -81,7 +80,9 @@ class TimeSlotsCVC: UICollectionViewController {
                     
                 }
                 print("count","",self.TimeSlotList.count)
-                //self.collectionView?.reloadSections(IndexSet(integer : 0))
+                self.calendarView.reloadData()
+//                self.calendarView.reloadSections(<#T##sections: IndexSet##IndexSet#>)
+                self.collectionView?.reloadSections(IndexSet(integer : 0))
             }
         })
         
@@ -137,7 +138,8 @@ class TimeSlotsCVC: UICollectionViewController {
         {
         //let timeSlot =/ timeSlots[indexPath.row]
         formatter.dateFormat = "H:mm"
-        cell.timeLabel.text = "9.00"
+        cell.timeLabel.text = TimeSlotList[indexPath.row].time
+        print("----" , self.TimeSlotList.count)
         }
         return cell
     }
