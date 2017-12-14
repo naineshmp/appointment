@@ -18,9 +18,10 @@ class CalendarViewController: UIViewController {
     var ref: DatabaseReference!
     @IBOutlet weak var tableView: UITableView!
     var keyString: String = "NULL"
+    var keydate: String = "NULL"
     var AppointmentList = Array<Appointment>()
-    
-    
+    private let segueApptDetail = "SegueApptDetail"
+    private var selectedAppointmentId: String = "null"
     let formatter = DateFormatter()
     // Calendar Color
     let outsideMonthColor = UIColor.lightGray
@@ -48,6 +49,25 @@ class CalendarViewController: UIViewController {
         return;
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueApptDetail {
+            
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let cell = tableView.cellForRow(at: indexPath) as! AppointmentCell
+                let controller = (segue.destination as! AppointmentDetailViewController)
+                controller.appointmentId =  cell.uiLabel.text!
+                controller.keyDate = self.keydate
+                print("id--",cell.uiLabel.text!)
+            }
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        
+    }
+    
     func getAppointmentForDay(dateEntered: Date){
         self.AppointmentList.removeAll()
         let dateFormat = DateFormatter()
@@ -58,6 +78,7 @@ class CalendarViewController: UIViewController {
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
                     let appointment = Appointment()
+                    appointment.appointmentId = each.key
                     appointment.name = each.value["name"] as! String
                     appointment.phone = each.value["phone"] as! String
                     appointment.time = each.value["time"] as! String
@@ -93,15 +114,7 @@ class CalendarViewController: UIViewController {
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //    if segue.identifier == segueApptDetail {
-        //      if let indexPath = tableView.indexPathForSelectedRow {
-        ////        let appointment = fetchedResultsController.object(at: indexPath)
-        ////        //let controller = (segue.destination as! ApptDetailTVC)
-        ////        controller.appointment = appointment
-        //      }
-        //    }
-    }
+    
     
     func applicationDidEnterBackground(_ notification: Notification) {
         
@@ -145,6 +158,8 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             }
         cell.nameLabel.text = AppointmentList[indexPath.row].name
         cell.noteLabel.text = AppointmentList[indexPath.row].notes
+        cell.uiLabel.text = AppointmentList[indexPath.row].appointmentId
+        cell.uiLabel.isHidden = true
         }
         return cell
     }
@@ -318,7 +333,9 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-        
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy"
+        self.keydate = dateFormat.string(from: date)
         self.getAppointmentForDay(dateEntered: date)
         self.tableView.reloadData()
         //  loadAppointmentsForDate(date: date)
@@ -328,6 +345,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
+        print("---- selected------")
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

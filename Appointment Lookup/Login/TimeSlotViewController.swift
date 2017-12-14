@@ -20,6 +20,7 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
     @IBOutlet weak var numberOfSlots: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var queue = DispatchQueue(label: "Main ", qos: .utility)
+    var keyDate:String = "NULL"
     
     var TimeSlotList = Array<TimeSlot>()
     var ref: DatabaseReference!
@@ -58,7 +59,15 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy"
+        keyDate = dateFormat.string(from: Date())
+        print("--", keyDate)
         // Do any additional setup after loading the view.
+    }
+    
+   func getDateString(){
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {

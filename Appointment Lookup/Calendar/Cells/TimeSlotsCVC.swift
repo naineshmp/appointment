@@ -130,7 +130,6 @@ class TimeSlotsCVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TimeSlotCell
         
         if cell.isSelected {
-            cell.timeSlotView.backgroundColor = UIColor(red: 205, green: 141, blue: 254, alpha: 1)
             cell.timeLabel.textColor = .white
         }
         

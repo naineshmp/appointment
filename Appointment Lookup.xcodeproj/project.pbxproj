@@ -27,6 +27,7 @@
 		3EA015BA1FD4A6F4000AC28D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */; };
 		3EA144D41FD4FA900020FA2D /* BusinessUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA144D31FD4FA900020FA2D /* BusinessUser.swift */; };
 		3EA5858E1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */; };
+		3EAFD4D51FE22AAA00E03ED4 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */; };
 		3ECD46031FD4BFC3001B5FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */; };
 		3ECD460A1FD4C2DC001B5FD2 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */; };
 		3ECD460B1FD4C2DC001B5FD2 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46071FD4C2DC001B5FD2 /* About.swift */; };
@@ -91,6 +92,7 @@
 		3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EA144D31FD4FA900020FA2D /* BusinessUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUser.swift; sourceTree = "<group>"; };
 		3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotTableViewCell.swift; sourceTree = "<group>"; };
+		3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
 		3ECD46071FD4C2DC001B5FD2 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				3EFB49A81FDE22440004A1A0 /* Cells */,
 				3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */,
 				3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */,
+				3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EA144D41FD4FA900020FA2D /* BusinessUser.swift in Sources */,
+				3EAFD4D51FE22AAA00E03ED4 /* AppointmentDetailViewController.swift in Sources */,
 				3E0D2BD41FDE078000E16750 /* ServiceProvidersListViewController.swift in Sources */,
 				3EFB49E51FDF8C6F0004A1A0 /* FirebaseHelper.swift in Sources */,
 				3EFB49E71FDF9F290004A1A0 /* TimeSlotViewController.swift in Sources */,
