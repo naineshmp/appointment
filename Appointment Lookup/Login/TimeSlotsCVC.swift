@@ -49,10 +49,10 @@ class TimeSlotsCVC: UICollectionViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNewAppointment" {
-            if let toViewController = segue.destination as? NewAppointmentViewController {
-                var button =
-                toViewController.timeSelected = self.selectedTime
-                print(toViewController.timeSelected)
+            if let toViewController = segue.destination as? NewApptTableViewController {
+               
+                toViewController.selectedTime = self.selectedTime
+                print(toViewController.selectedTime)
             }
         }
     }
@@ -158,13 +158,7 @@ class TimeSlotsCVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("this one selected")
-        //    if let destinationVC = self.navigationController?.viewControllers[0] as?  NewApptTableViewController {
-        //      destinationVC.selectedTimeSlot = timeSlots[indexPath.row]
-        //      self.navigationController?.popViewController(animated: true)
-        //    } else if let destinationVC = self.navigationController?.viewControllers[0] as? UpdateApptTVC {
-        //      destinationVC.selectedTimeSlot = timeSlots[indexPath.row]
-        //      self.navigationController?.popViewController(animated: true)
-        //    }
+        
     }
     
 }
