@@ -135,8 +135,15 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppointmentCell", for: indexPath) as! AppointmentCell
         if(AppointmentList.count>0)
         {
+           var time = AppointmentList[indexPath.row].time
+            if time.range(of:":0") != nil {
+                time = time + "0"
+                 cell.dateLabel.text = time
+            }
+            else{
+                cell.dateLabel.text = AppointmentList[indexPath.row].time
+            }
         cell.nameLabel.text = AppointmentList[indexPath.row].name
-        cell.dateLabel.text = AppointmentList[indexPath.row].time
         cell.noteLabel.text = AppointmentList[indexPath.row].notes
         }
         return cell
