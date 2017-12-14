@@ -1,9 +1,9 @@
 //
 //  CalendarViewController.swift
-//  Appt
+//  Appointment Lookup
 //
-//  Created by Agustin Mendoza Romo on 8/12/17.
-//  Copyright © 2017 AgustinMendoza. All rights reserved.
+//  Created by Nainesh Patel on 12/13/17.
+//  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
 
 import UIKit
@@ -30,8 +30,9 @@ class CalendarViewController: UIViewController {
     let currentDateSelectedViewColor = UIColor.black
     func setKeyString() {
         ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
-            //print(snapShot)
+            print("-- shot per shot")
             if let snapDict = snapShot.value as? [String:AnyObject]{
+                print(snapShot, "-------")
                 for each in snapDict{
                     let userEmail = each.value["user"] as! String
                     if(userEmail == (Auth.auth().currentUser?.email)!)

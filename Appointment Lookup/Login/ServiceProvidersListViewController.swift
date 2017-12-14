@@ -1,11 +1,10 @@
 //
 //  ServiceProvidersListViewController.swift
-//  Book My Appointment
+//  Appointment Lookup
 //
-//  Created by Hitesh Raichandani on 11/22/16.
-//  Copyright © 2016 Book My Appointment. All rights reserved.
+//  Created by Nainesh Patel on 12/13/17.
+//  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
-
 import UIKit
 
 class ServiceProviderListCell: UITableViewCell {

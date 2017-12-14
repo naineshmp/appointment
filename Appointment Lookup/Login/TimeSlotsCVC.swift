@@ -1,9 +1,9 @@
 //
 //  TimeSlotsCVC.swift
-//  Appt
+//  Appointment Lookup
 //
-//  Created by Agustin Mendoza Romo on 8/8/17.
-//  Copyright © 2017 AgustinMendoza. All rights reserved.
+//  Created by Nainesh Patel on 12/13/17.
+//  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
 
 import UIKit
@@ -89,7 +89,7 @@ class TimeSlotsCVC: UICollectionViewController {
                 }
                 print("count","",self.TimeSlotList.count)
                 self.calendarView.reloadData()
-//                self.calendarView.reloadSections(<#T##sections: IndexSet##IndexSet#>)
+//                self.calendarView.reloadSections()
                 self.collectionView?.reloadSections(IndexSet(integer : 0))
             }
         })
@@ -136,10 +136,6 @@ class TimeSlotsCVC: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TimeSlotCell
-        
-        if cell.isSelected {
-            cell.timeLabel.textColor = .white
-        }
         
         if(TimeSlotList.count>0)
         {

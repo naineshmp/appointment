@@ -1,9 +1,9 @@
 //
 //  About.swift
-//  test
+//  Appointment Lookup
 //
-//  Created by Dominic Heaton on 12/11/2017.
-//  Copyright © 2017 Dominic Heaton. All rights reserved.
+//  Created by Nainesh Patel on 12/13/17.
+//  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
 
 import UIKit

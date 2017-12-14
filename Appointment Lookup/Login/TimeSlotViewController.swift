@@ -16,7 +16,20 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
         return self.TimeSlotList.count
     }
     
-    @IBOutlet weak var TimePIcker: UIDatePicker!
+
+    @IBOutlet weak var timePicker: UIDatePicker!
+    
+    @IBAction func changeDate(_ sender: UIDatePicker) {
+        print("date changed..", sender.date)
+        self.TimeSlotList.removeAll()
+        self.tableView.reloadData()
+        keyDate = self.getDateString(date: sender.date)
+        print(keyDate)
+        self.getAllTimeSlots(self.getDateString(date: sender.date))
+    }
+    
+    
+    @IBOutlet weak var datePicker: UINavigationItem!
     @IBOutlet weak var numberOfSlots: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var queue = DispatchQueue(label: "Main ", qos: .utility)
@@ -43,44 +56,41 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
     
     
     @IBAction func updateClicked(_ sender: Any) {
-        let date = TimePIcker.date
+        let date = timePicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
-        //        print(dateFormat.string(from: date))
+        //print(dateFormat.string(from: date))
         let calendar = Calendar.current
         let comp = calendar.dateComponents([.hour, .minute], from: date)
         let hour = comp.hour
         let minute = comp.minute
         let times = String(hour!) + ":" + String(minute!)
         let numberSlot = Int(numberOfSlots.text!)
-        print(dateFormat.string(from: date))
-        addTimeToFirebase(id: keyString, time: times, slot: numberSlot!, date: dateFormat.string(from: date))
-        getAllTimeSlots()
+
+        addTimeToFirebase(id: keyString, time: times, slot: numberSlot!)
+        getAllTimeSlots(keyDate)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "MM-dd-yyyy"
-        keyDate = dateFormat.string(from: Date())
+        keyDate = getDateString(date: Date())
         print("--", keyDate)
         // Do any additional setup after loading the view.
     }
     
-   func getDateString(){
+    func getDateString(date: Date) -> String{
+     let dateFormat = DateFormatter()
+    dateFormat.dateFormat = "MM-dd-yyyy"
+    return dateFormat.string(from: date)
     
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        TimePIcker.datePickerMode = UIDatePickerMode.dateAndTime
         var dateComponents = DateComponents()
         dateComponents.hour = 8
         dateComponents.minute = 0
-        dateComponents.day = 21
-        dateComponents.month = 12
-        dateComponents.year = 2017
         let userCalendar = Calendar.current // user calendar
         let someDateTime = userCalendar.date(from: dateComponents)
-        TimePIcker.date = someDateTime!
+        timePicker.date = someDateTime!
         numberOfSlots.text = "0"
         ref = Database.database().reference()
         checkExisting()
@@ -102,7 +112,7 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
                     if(userEmail == (Auth.auth().currentUser?.email)!)
                     {
                         self.keyString = each.key
-                        self.getAllTimeSlots()
+                        self.getAllTimeSlots(self.keyDate)
                         print(self.keyString, "-- init")
                         return;
                     }
@@ -121,12 +131,12 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
         let reference = ref.child("timeSlots")
         let key = reference.childByAutoId().key;
         keyString = key
-        getAllTimeSlots()
+        getAllTimeSlots(keyDate)
         self.ref.child("timeSlots").child(key).child("user").setValue((Auth.auth().currentUser?.email)!)
     }
     
-    func addTimeToFirebase(id: String, time: String, slot: Int, date: String){
-        self.ref.child("timeSlots").child(id).child(date).child(time).setValue(slot)
+    func addTimeToFirebase(id: String, time: String, slot: Int){
+        self.ref.child("timeSlots").child(id).child(keyDate).child(time).setValue(slot)
     }
     
     
@@ -145,11 +155,11 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
         })
     }
     
-    public func getAllTimeSlots(){
+    public func getAllTimeSlots(_ date: String){
         getKeyString()
         self.TimeSlotList.removeAll()
-        print("started with keystring", self.keyString )
-        ref.child("timeSlots").child(self.keyString).child("12-21-2017").observeSingleEvent(of: .value, with: { (snapShot) in
+        print("started with keystring", date )
+        ref.child("timeSlots").child(self.keyString).child(date).observeSingleEvent(of: .value, with: { (snapShot) in
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
                     let timeSlot = TimeSlot()
