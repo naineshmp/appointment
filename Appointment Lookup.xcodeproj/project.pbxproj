@@ -17,7 +17,7 @@
 		3E62BC661FE1DF2500D4B339 /* NewApptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */; };
 		3E62BC681FE1E72900D4B339 /* TimeSlotsCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */; };
 		3E62BC6A1FE1E9AA00D4B339 /* TimeSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */; };
-		3E7456B01FE2180400ACF552 /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7456AF1FE2180400ACF552 /* AppointmentCell.swift */; };
+		3E7456B21FE21AD300ACF552 /* AppointmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */; };
 		3E808BDE1FD2745B0079E83F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E808BDD1FD2745B0079E83F /* AppDelegate.swift */; };
 		3E808BE51FD2745B0079E83F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E808BE31FD2745B0079E83F /* Main.storyboard */; };
 		3E808BE71FD2745B0079E83F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E808BE61FD2745B0079E83F /* Assets.xcassets */; };
@@ -75,7 +75,7 @@
 		3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewApptTableViewController.swift; sourceTree = "<group>"; };
 		3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlotsCVC.swift; sourceTree = "<group>"; };
 		3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlotCell.swift; sourceTree = "<group>"; };
-		3E7456AF1FE2180400ACF552 /* AppointmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppointmentCell.swift; path = ../../../../../../../Downloads/AppointmentCell.swift; sourceTree = "<group>"; };
+		3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
 		3E808BDA1FD2745B0079E83F /* Appointment Lookup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Appointment Lookup.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E808BDD1FD2745B0079E83F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E808BE41FD2745B0079E83F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -237,11 +237,11 @@
 		3EFB49A81FDE22440004A1A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3E7456AF1FE2180400ACF552 /* AppointmentCell.swift */,
 				3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */,
 				3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */,
 				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
 				3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */,
+				3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -589,6 +589,7 @@
 				3E6237C61FE0F61D00BC9699 /* DateHelper.swift in Sources */,
 				3E0D2BD21FDDFD7F00E16750 /* CustomTabBar.swift in Sources */,
 				3E438A401FE0CB26001459F7 /* TimeSlot.swift in Sources */,
+				3E7456B21FE21AD300ACF552 /* AppointmentCell.swift in Sources */,
 				3EA5858E1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift in Sources */,
 				3ECD460A1FD4C2DC001B5FD2 /* PasswordController.swift in Sources */,
 				3EFB49C71FDE265A0004A1A0 /* TimeSlotter.swift in Sources */,
@@ -598,7 +599,6 @@
 				3E62BC681FE1E72900D4B339 /* TimeSlotsCVC.swift in Sources */,
 				3ECD460C1FD4C2DC001B5FD2 /* RegisterController.swift in Sources */,
 				3ECD46101FD4CD2F001B5FD2 /* RegisterBusinessController.swift in Sources */,
-				3E7456B01FE2180400ACF552 /* AppointmentCell.swift in Sources */,
 				3ECD46031FD4BFC3001B5FD2 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
