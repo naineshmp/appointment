@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ooj-18-Cht">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RwB-r2-J8O">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1076,10 +1076,10 @@
             </objects>
             <point key="canvasLocation" x="3173.5999999999999" y="1833.7331334332835"/>
         </scene>
-        <!--View Controller-->
+        <!--Time Slot Settings View Controller-->
         <scene sceneID="3ht-HA-LcE">
             <objects>
-                <viewController id="RwB-r2-J8O" sceneMemberID="viewController">
+                <viewController id="RwB-r2-J8O" customClass="TimeSlotSettingsViewController" customModule="Appointment_Lookup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uBV-ju-7DY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1149,10 +1149,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="79j-cg-ODb"/>
                     </view>
+                    <connections>
+                        <outlet property="endTimeSettings" destination="Wbe-HO-sfD" id="crZ-m9-LvX"/>
+                        <outlet property="startTimeSettings" destination="sUX-1R-7lm" id="QxE-NG-TIF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cag-bD-pdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4292" y="1833.7331334332835"/>
+            <point key="canvasLocation" x="-2900" y="-15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="arL-rJ-bNc">
@@ -2058,8 +2062,8 @@
         <image name="today" width="36" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DyF-Ai-lah"/>
+        <segue reference="hhL-Db-vaJ"/>
         <segue reference="tId-ca-Les"/>
-        <segue reference="TvN-U2-OJu"/>
+        <segue reference="p0n-nO-gTm"/>
     </inferredMetricsTieBreakers>
 </document>

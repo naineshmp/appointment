@@ -33,6 +33,7 @@
 		3ECD460B1FD4C2DC001B5FD2 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46071FD4C2DC001B5FD2 /* About.swift */; };
 		3ECD460C1FD4C2DC001B5FD2 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */; };
 		3ECD46101FD4CD2F001B5FD2 /* RegisterBusinessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */; };
+		3EE96DA71FE389E900EFF89C /* TimeSlotSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */; };
 		3EFB49A51FDE21D40004A1A0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */; };
 		3EFB49AF1FDE224F0004A1A0 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */; };
 		3EFB49C51FDE265A0004A1A0 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB49C21FDE26590004A1A0 /* DateFormatters.swift */; };
@@ -98,6 +99,7 @@
 		3ECD46071FD4C2DC001B5FD2 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterBusinessController.swift; sourceTree = "<group>"; };
+		3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotSettingsViewController.swift; sourceTree = "<group>"; };
 		3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		3EFB49C21FDE26590004A1A0 /* DateFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				3EA144D31FD4FA900020FA2D /* BusinessUser.swift */,
 				3EFB49E61FDF9F290004A1A0 /* TimeSlotViewController.swift */,
 				3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */,
+				3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				3E62BC6A1FE1E9AA00D4B339 /* TimeSlotCell.swift in Sources */,
 				3EFB49C51FDE265A0004A1A0 /* DateFormatters.swift in Sources */,
 				3E808BDE1FD2745B0079E83F /* AppDelegate.swift in Sources */,
+				3EE96DA71FE389E900EFF89C /* TimeSlotSettingsViewController.swift in Sources */,
 				3EFB49A51FDE21D40004A1A0 /* CalendarViewController.swift in Sources */,
 				3E0D2BD01FDDF24000E16750 /* CategoriesViewController.swift in Sources */,
 				3ECD460B1FD4C2DC001B5FD2 /* About.swift in Sources */,
