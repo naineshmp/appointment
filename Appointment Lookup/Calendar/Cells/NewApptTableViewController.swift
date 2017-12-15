@@ -9,12 +9,20 @@
 import UIKit
 import CoreData
 import JTAppleCalendar
+import FirebaseDatabase
+import FirebaseAuth
 
 class NewApptTableViewController: UITableViewController {
     let formatter = DateFormatter()
     var calendarViewHidden = true
     var appointmentScrolled = false
-    
+    var keyDate: Date = Date()
+    var keyString: String = ""
+    var name: String = ""
+    var phone: String = ""
+    var notes: String = ""
+    var slots: Int = 0
+    var ref: DatabaseReference! = Database.database().reference()
     // Calendar Color
     let outsideMonthColor = UIColor.lightGray
     let monthColor = UIColor.darkGray
@@ -38,8 +46,19 @@ class NewApptTableViewController: UITableViewController {
         if CustomerName.text != nil && selectedTime != "" && phoneNumber.text != nil{
             saveAppointment()
         }
-      //  confirmAppointment()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTimeSlots" {
+             let controller = (segue.destination as! TimeSlotsCVC)
+                controller.keyDate =  self.selectedDate
+                controller.name = self.CustomerName.text!
+                controller.notes = self.noteTextView.text
+                controller.phone = self.phoneNumber.text!
+            
+            }
+        }
+    
     
     func saveAppointment(){
         print("______________Apoointment______________")
@@ -48,12 +67,13 @@ class NewApptTableViewController: UITableViewController {
         print(selectedTime)
         print(selectedDate)
         print(noteTextView.text!)
+        addAppointment()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendarView()
         noLargeTitles()
-      
+      setKeyString()
         setupKeyboardNotification()
         
         calendarView.scrollToDate(Date(), animateScroll: false)
@@ -64,11 +84,59 @@ class NewApptTableViewController: UITableViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       
+    override func viewDidAppear(_ animated: Bool) {
+        setKeyString()
     }
     
+    func setKeyString() {
+        ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
+            //print(snapShot)
+            if let snapDict = snapShot.value as? [String:AnyObject]{
+                for each in snapDict{
+                    let userEmail = each.value["user"] as! String
+                    if(userEmail == (Auth.auth().currentUser?.email)!)
+                    {
+                        self.keyString = each.key
+                        print(self.keyString, "-- init")
+                        return;
+                    }
+                }
+                //self.setTimeSlot()
+            }
+            
+        })
+        return;
+    }
     
+    func addAppointment()
+    {
+        let appointment = [ "name": self.CustomerName.text ?? "Default Name",
+                            "notes": self.noteTextView.text,
+                            "time": self.selectedTime,
+                            "phone": self.phoneNumber.text!
+            ] as [String : Any]
+        self.updateTimeSlot(selectedDate, selectedTime, slots-1)
+        self.ref.child("appointments").child(self.keyString).child(self.selectedDate).childByAutoId().setValue(appointment)
+    }
+    
+    func updateTimeSlot(_ date: String,_ time: String,_ slot: Int){
+        print("-- time slot changed --")
+        self.ref.child("timeSlots").child(keyString).child(date).child(time).setValue(slot)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.CustomerName.text = self.name
+        self.phoneNumber.text = self.phone
+        self.noteTextView.text = self.notes
+        let dateFormat = DateFormatter()
+        if selectedDate != ""{
+            dateFormat.dateFormat = "MM-dd-yyyy"
+            dateFormat.date(from: selectedDate)
+            print(selectedDate,"this date returned")
+            calendarView.scrollToDate(dateFormat.date(from: selectedDate)!, animateScroll: false)
+            calendarView.selectDates( [dateFormat.date(from: selectedDate)!] )
+        }
+    }
     
     func noLargeTitles(){
         if #available(iOS 11.0, *) {
@@ -196,8 +264,7 @@ extension NewApptTableViewController {
    
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
+   
 }
 
 
@@ -264,10 +331,13 @@ extension NewApptTableViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-        
         updateDateDetailLabel(date: date)
         loadAppointmentsForDate(date: date)
-        self.selectedDate = "\(date)"
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy"
+        self.selectedDate = dateFormat.string(from: date)
+        //self.selectedDate = "\(date)"
+        
         //    calendarViewDateChanged()
     }
     
