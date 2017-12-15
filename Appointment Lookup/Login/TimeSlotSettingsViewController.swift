@@ -87,22 +87,63 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let times = String(hour!) + ":" + String(minute!)
         endTimeSettings.text = times
         view.endEditing(true)
+        var time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
+        setTimeSlots(time: time)
+        
+        
     }
-
+    func dateToString(date : Date) -> String{
+        let date = date
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy"
+        //print(dateFormat.string(from: date))
+        let calendar = Calendar.current
+        let comp = calendar.dateComponents([.hour, .minute], from: date)
+        let hour = comp.hour
+        let minute = comp.minute
+        let times = String(hour!) + ":" + String(minute!)
+        return times
+    }
+    
+    func setTimeSlots(time :String){
+        var timeString = time.components(separatedBy: " ")
+        var minutes = Int(timeString[0])
+        var noOfSlots = minutes!/30
+        print(noOfSlots," == no of slots")
+        var Slots = [TimeSlot]()
+        
+        var currentTime = dateToString(date: self.startPicker.date)
+        var date = self.startPicker.date
+        for i in 0...noOfSlots-1{
+            var newSlot = TimeSlot()
+            let newTime = date.addingTimeInterval(30 * 60 * Double(i))
+            //print(newTime)
+            newSlot.time = dateToString(date: newTime)
+            newSlot.slot = 2
+            Slots.append(newSlot)
+            print(newSlot.time,"+",newSlot.slot)
+        }
+        print("Slots")
+    }
+    func offsetFrom(startDate: Date, endDate : Date) -> String {
+        
+        let previousDate = startDate
+        let now = endDate
+        
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.minute, .second]
+        formatter.maximumUnitCount = 2
+        
+        let string = formatter.string(from: previousDate, to: now)
+        print(string,"Difference")
+        return string!
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
