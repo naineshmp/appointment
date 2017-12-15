@@ -36,8 +36,9 @@ class NewApptTableViewController: UITableViewController {
     @IBOutlet weak var CustomerName: UITextField!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var dateDetailLabel: UILabel!
-    
+    @IBOutlet weak var CustomerEmail: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
+    
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -67,6 +68,7 @@ class NewApptTableViewController: UITableViewController {
         print(selectedTime)
         print(selectedDate)
         print(noteTextView.text!)
+        print(CustomerEmail.text!)
         addAppointment()
     }
     override func viewDidLoad() {
@@ -113,7 +115,8 @@ class NewApptTableViewController: UITableViewController {
         let appointment = [ "name": self.CustomerName.text ?? "Default Name",
                             "notes": self.noteTextView.text,
                             "time": self.selectedTime,
-                            "phone": self.phoneNumber.text!
+                            "phone": self.phoneNumber.text!,
+                            "email": self.CustomerEmail.text!
             ] as [String : Any]
         self.updateTimeSlot(selectedDate, selectedTime, slots-1)
         self.ref.child("appointments").child(self.keyString).child(self.selectedDate).childByAutoId().setValue(appointment)
