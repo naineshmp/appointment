@@ -18,8 +18,10 @@ class ServiceProviderListCell: UITableViewCell {
 class ServiceProvidersListViewController: UITableViewController {
     
     var providerList = ["Health"]
+    var provideIds = ["Health"]
     let cellIdentifier = "ServiceProviderListCell"
     var businessCategory: String = ""
+    var businessId: String = ""
     var ref: DatabaseReference! = Database.database().reference()
 //    var placesList: GMSPlaceLikelihoodList?
     var selectedFinalCategory: String = ""
@@ -45,12 +47,14 @@ class ServiceProvidersListViewController: UITableViewController {
         ref.child("businessUsers").observeSingleEvent(of: .value, with: { (snapShot) in
             print(snapShot)
             self.providerList.removeAll()
+            self.provideIds.removeAll()
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
                     print(each)
                     let businessType:String = (each.value["businesstype"] as? String)!
                     if(self.businessCategory == businessType){
                         self.providerList.append((each.value["name"] as? String)!)
+                        self.provideIds.append((each.value["email"] as? String)!)
                     }
                     print()
                     self.tableView.reloadData()
@@ -83,6 +87,7 @@ class ServiceProvidersListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ServiceProviderListCell
         cell.serviceProviderTitle.text = self.providerList[indexPath.row]
+        self.businessId = self.provideIds[indexPath.row]
         return cell
     }
 
@@ -93,12 +98,14 @@ class ServiceProvidersListViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-
-//            let destinationViewController = segue.destination as! BusinessPageViewController
-            //estinationViewController.place = placesList[indexPath.row] as? Place
+        if segue.identifier == "providetToBookCustomer" {
+            let controller = (segue.destination as! CustomerNewApptTableViewController)
+            controller.businessId =  self.businessId
+            print("contr --- this id passed" , self.businessId)
+            
         }
-    }
+        }
+    
     
 
  

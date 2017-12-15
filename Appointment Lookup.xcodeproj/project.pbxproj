@@ -12,6 +12,7 @@
 		3E0D2BD41FDE078000E16750 /* ServiceProvidersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */; };
 		3E3390D11FE3AD0D007DFDE2 /* CustomerNewApptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */; };
 		3E438A401FE0CB26001459F7 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */; };
+		3E46F74C1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */; };
 		3E5DC8C71FE10BC000B502CA /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5DC8C61FE10BC000B502CA /* Appointment.swift */; };
 		3E6237C41FE0F11F00BC9699 /* NewAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */; };
 		3E6237C61FE0F61D00BC9699 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6237C51FE0F61D00BC9699 /* DateHelper.swift */; };
@@ -34,7 +35,12 @@
 		3ECD460B1FD4C2DC001B5FD2 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46071FD4C2DC001B5FD2 /* About.swift */; };
 		3ECD460C1FD4C2DC001B5FD2 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */; };
 		3ECD46101FD4CD2F001B5FD2 /* RegisterBusinessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */; };
+		3ED914FB1FE4828200B6BA24 /* TimeSlotCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED914FA1FE4828200B6BA24 /* TimeSlotCell2.swift */; };
+		3ED914FD1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED914FC1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift */; };
 		3EE96DA71FE389E900EFF89C /* TimeSlotSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */; };
+		3EF3C63B1FE48EA1000E2AFE /* CalendarDayCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF3C63A1FE48EA1000E2AFE /* CalendarDayCell2.swift */; };
+		3EF3C63D1FE48EE5000E2AFE /* AppointmentCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF3C63C1FE48EE5000E2AFE /* AppointmentCell2.swift */; };
+		3EF3C63F1FE48F2E000E2AFE /* CalendarViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF3C63E1FE48F2D000E2AFE /* CalendarViewController2.swift */; };
 		3EFB49A51FDE21D40004A1A0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */; };
 		3EFB49AF1FDE224F0004A1A0 /* CalendarDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */; };
 		3EFB49C51FDE265A0004A1A0 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFB49C21FDE26590004A1A0 /* DateFormatters.swift */; };
@@ -73,6 +79,7 @@
 		3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvidersListViewController.swift; sourceTree = "<group>"; };
 		3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerNewApptTableViewController.swift; path = "Appointment Lookup/Calendar/Cells/CustomerNewApptTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
+		3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSideCalendarViewCell.swift; sourceTree = "<group>"; };
 		3E5DC8C61FE10BC000B502CA /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppointmentViewController.swift; sourceTree = "<group>"; };
 		3E6237C51FE0F61D00BC9699 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -101,7 +108,12 @@
 		3ECD46071FD4C2DC001B5FD2 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterBusinessController.swift; sourceTree = "<group>"; };
+		3ED914FA1FE4828200B6BA24 /* TimeSlotCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotCell2.swift; sourceTree = "<group>"; };
+		3ED914FC1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotCVCCustomer.swift; sourceTree = "<group>"; };
 		3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotSettingsViewController.swift; sourceTree = "<group>"; };
+		3EF3C63A1FE48EA1000E2AFE /* CalendarDayCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCell2.swift; sourceTree = "<group>"; };
+		3EF3C63C1FE48EE5000E2AFE /* AppointmentCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell2.swift; sourceTree = "<group>"; };
+		3EF3C63E1FE48F2D000E2AFE /* CalendarViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController2.swift; sourceTree = "<group>"; };
 		3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayCell.swift; sourceTree = "<group>"; };
 		3EFB49C21FDE26590004A1A0 /* DateFormatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
@@ -228,6 +240,7 @@
 				3EFB49E61FDF9F290004A1A0 /* TimeSlotViewController.swift */,
 				3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */,
 				3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */,
+				3ED914FC1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -249,8 +262,12 @@
 			children = (
 				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
 				3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */,
+				3EF3C63A1FE48EA1000E2AFE /* CalendarDayCell2.swift */,
 				3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */,
 				3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */,
+				3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */,
+				3ED914FA1FE4828200B6BA24 /* TimeSlotCell2.swift */,
+				3EF3C63C1FE48EE5000E2AFE /* AppointmentCell2.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -264,6 +281,7 @@
 				3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */,
 				3E6237C51FE0F61D00BC9699 /* DateHelper.swift */,
 				3E5DC8C61FE10BC000B502CA /* Appointment.swift */,
+				3EF3C63E1FE48F2D000E2AFE /* CalendarViewController2.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -586,8 +604,10 @@
 				3EA144D41FD4FA900020FA2D /* BusinessUser.swift in Sources */,
 				3EAFD4D51FE22AAA00E03ED4 /* AppointmentDetailViewController.swift in Sources */,
 				3E0D2BD41FDE078000E16750 /* ServiceProvidersListViewController.swift in Sources */,
+				3EF3C63B1FE48EA1000E2AFE /* CalendarDayCell2.swift in Sources */,
 				3EFB49E51FDF8C6F0004A1A0 /* FirebaseHelper.swift in Sources */,
 				3EFB49E71FDF9F290004A1A0 /* TimeSlotViewController.swift in Sources */,
+				3EF3C63D1FE48EE5000E2AFE /* AppointmentCell2.swift in Sources */,
 				3E62BC6A1FE1E9AA00D4B339 /* TimeSlotCell.swift in Sources */,
 				3E3390D11FE3AD0D007DFDE2 /* CustomerNewApptTableViewController.swift in Sources */,
 				3EFB49C51FDE265A0004A1A0 /* DateFormatters.swift in Sources */,
@@ -600,12 +620,16 @@
 				3E62BC661FE1DF2500D4B339 /* NewApptTableViewController.swift in Sources */,
 				3E6237C61FE0F61D00BC9699 /* DateHelper.swift in Sources */,
 				3E0D2BD21FDDFD7F00E16750 /* CustomTabBar.swift in Sources */,
+				3EF3C63F1FE48F2E000E2AFE /* CalendarViewController2.swift in Sources */,
+				3ED914FB1FE4828200B6BA24 /* TimeSlotCell2.swift in Sources */,
 				3E438A401FE0CB26001459F7 /* TimeSlot.swift in Sources */,
+				3ED914FD1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift in Sources */,
 				3E7456B21FE21AD300ACF552 /* AppointmentCell.swift in Sources */,
 				3EA5858E1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift in Sources */,
 				3ECD460A1FD4C2DC001B5FD2 /* PasswordController.swift in Sources */,
 				3EFB49C71FDE265A0004A1A0 /* TimeSlotter.swift in Sources */,
 				3EFB49AF1FDE224F0004A1A0 /* CalendarDayCell.swift in Sources */,
+				3E46F74C1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift in Sources */,
 				3E6237C41FE0F11F00BC9699 /* NewAppointmentViewController.swift in Sources */,
 				3EFB49C61FDE265A0004A1A0 /* TimeSlotFormatter.swift in Sources */,
 				3E62BC681FE1E72900D4B339 /* TimeSlotsCVC.swift in Sources */,
