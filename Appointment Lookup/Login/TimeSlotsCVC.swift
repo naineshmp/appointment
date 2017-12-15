@@ -13,7 +13,11 @@ import FirebaseAuth
 class TimeSlotsCVC: UICollectionViewController {
     
     private let reuseIdentifier = "TimeSlotCell"
-    
+    var keyDate:String = ""
+    var name: String = ""
+    var phone: String = ""
+    var notes: String = ""
+    var selectedTimeSlot: Int = 0
     @IBOutlet var calendarView: UICollectionView!
     
     var timeSlotter = TimeSlotter()
@@ -28,33 +32,45 @@ class TimeSlotsCVC: UICollectionViewController {
     var keyString: String = "NULL"
     var selectedTime = ""
     override func viewDidLoad() {
+        print(keyDate,"----- date passed")
         super.viewDidLoad()
         print(appointmentDate)
         setupTimeSlotter()
         navBarDropShadow()
         ref = Database.database().reference()
         print(self.keyString)
-         self.getKeyString()
+        self.getKeyString()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
         navBarNoShadow()
     }
-   
+    
     
     @IBAction func SetTime(_ sender: UIButton) {
         selectedTime = (sender.titleLabel?.text!)!
+        selectedTimeSlot = getAvailableSlots()
         performSegue(withIdentifier: "toNewAppointment", sender: sender)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toNewAppointment" {
             if let toViewController = segue.destination as? NewApptTableViewController {
-               
+                
                 toViewController.selectedTime = self.selectedTime
+                toViewController.selectedDate = self.keyDate
+                toViewController.notes = self.notes
+                toViewController.phone = self.phone
+                toViewController.name = self.name
+                toViewController.slots = self.selectedTimeSlot
                 print(toViewController.selectedTime)
             }
         }
+    }
+    
+    func getAvailableSlots() -> Int{
+        let first =  self.TimeSlotList.first(where: {$0.time == selectedTime})
+        return (first?.slot)!
     }
     
     public func getKeyString(){
@@ -77,19 +93,24 @@ class TimeSlotsCVC: UICollectionViewController {
     public func getAllTimeSlots(){
         self.TimeSlotList.removeAll()
         print("started with keystring", self.keyString )
-        ref.child("timeSlots").child(self.keyString).child("12-21-2017").observeSingleEvent(of: .value, with: { (snapShot) in
+        ref.child("timeSlots").child(self.keyString).child(keyDate).observeSingleEvent(of: .value, with: { (snapShot) in
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
                     let timeSlot = TimeSlot()
                     timeSlot.time = each.key
                     timeSlot.slot = each.value as! Int
-                    self.TimeSlotList.append(timeSlot)
-                    self.TimeSlotList.sort { $0.time.compare($1.time, options: .numeric) == .orderedAscending }
+                    if(timeSlot.slot>0)
+                    {
+                        self.TimeSlotList.append(timeSlot)
+                    }
+                    
+                    
                     
                 }
+                self.TimeSlotList.sort { $0.time.compare($1.time, options: .numeric) == .orderedAscending }
                 print("count","",self.TimeSlotList.count)
                 self.calendarView.reloadData()
-//                self.calendarView.reloadSections()
+                //                self.calendarView.reloadSections()
                 self.collectionView?.reloadSections(IndexSet(integer : 0))
             }
         })
@@ -139,11 +160,12 @@ class TimeSlotsCVC: UICollectionViewController {
         
         if(TimeSlotList.count>0)
         {
-        //let timeSlot =/ timeSlots[indexPath.row]
-        formatter.dateFormat = "H:mm"
-        cell.timeSlotButton.setTitle(TimeSlotList[indexPath.row].time, for: UIControlState.normal)
-        
-        print("----" , TimeSlotList[indexPath.row].time)
+           
+                //let timeSlot =/ timeSlots[indexPath.row]
+                formatter.dateFormat = "H:mm"
+                cell.timeSlotButton.setTitle(TimeSlotList[indexPath.row].time, for: UIControlState.normal)
+          
+            print("----" , TimeSlotList[indexPath.row].time)
         }
         return cell
     }

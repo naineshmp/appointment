@@ -13,8 +13,8 @@ import FirebaseDatabase
 class AppointmentDetailViewController: UIViewController {
 
     var ref: DatabaseReference!
-    var keyString: String = "NULL"
-    var keyDate: String = "NULL"
+    var keyString: String = ""
+    var keyDate: String = ""
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var chargeLabel: UILabel!
@@ -22,7 +22,7 @@ class AppointmentDetailViewController: UIViewController {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var customerName: UILabel!
     @IBOutlet weak var chargeTextField: UILabel!
-    var appointmentId:String  = "null"
+    var appointmentId:String  = ""
     
     func getData() {
         ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
@@ -41,6 +41,11 @@ class AppointmentDetailViewController: UIViewController {
             
         })
         return;
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+    
+        reloadInputViews()
     }
     
     public func getAppointment(){

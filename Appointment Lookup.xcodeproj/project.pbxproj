@@ -73,7 +73,7 @@
 		3E5DC8C61FE10BC000B502CA /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppointmentViewController.swift; sourceTree = "<group>"; };
 		3E6237C51FE0F61D00BC9699 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewApptTableViewController.swift; sourceTree = "<group>"; };
+		3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewApptTableViewController.swift; path = Cells/NewApptTableViewController.swift; sourceTree = "<group>"; };
 		3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlotsCVC.swift; sourceTree = "<group>"; };
 		3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSlotCell.swift; sourceTree = "<group>"; };
 		3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCell.swift; sourceTree = "<group>"; };
@@ -234,6 +234,7 @@
 				3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */,
 				3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */,
 				3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */,
+				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -243,7 +244,6 @@
 			children = (
 				3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */,
 				3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */,
-				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
 				3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */,
 			);
 			path = Cells;

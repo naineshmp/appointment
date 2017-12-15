@@ -84,7 +84,6 @@ class CalendarViewController: UIViewController {
                     appointment.phone = each.value["phone"] as! String
                     appointment.time = each.value["time"] as! String
                     appointment.notes = each.value["notes"] as! String
-                    appointment.charge = each.value["charge"] as! Double
                     self.AppointmentList.append(appointment)
                     print("Added", self.AppointmentList.count)
                 }
