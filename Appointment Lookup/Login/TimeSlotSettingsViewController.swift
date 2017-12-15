@@ -20,6 +20,9 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var startTimeSettings: UITextField!
      let startPicker = UIDatePicker()
     let endPicker = UIDatePicker()
+    var endTime = ""
+    @IBOutlet weak var NumOfSlots: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +78,14 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    @IBAction func SaveToDB(_ sender: UIButton) {
+        
+        var time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
+        setTimeSlots(time: time)
+        
+        
+    }
+    
     @objc func endDonePicker() {
         let date = endPicker.date
         let dateFormat = DateFormatter()
@@ -87,11 +98,8 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let times = String(hour!) + ":" + String(minute!)
         endTimeSettings.text = times
         view.endEditing(true)
-        var time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
-        setTimeSlots(time: time)
-        
-        
     }
+    
     func dateToString(date : Date) -> String{
         let date = date
         let dateFormat = DateFormatter()
@@ -111,7 +119,10 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         var noOfSlots = minutes!/30
         print(noOfSlots," == no of slots")
         var Slots = [TimeSlot]()
-        
+        var val = 2
+        if NumOfSlots.text != ""{
+            val = Int(NumOfSlots.text!)!
+        }
         var currentTime = dateToString(date: self.startPicker.date)
         var date = self.startPicker.date
         for i in 0...noOfSlots-1{
@@ -119,7 +130,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
             let newTime = date.addingTimeInterval(30 * 60 * Double(i))
             //print(newTime)
             newSlot.time = dateToString(date: newTime)
-            newSlot.slot = 2
+            newSlot.slot = val
             Slots.append(newSlot)
             print(newSlot.time,"+",newSlot.slot)
         }
