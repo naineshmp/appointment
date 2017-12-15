@@ -10,6 +10,7 @@
 		3E0D2BD01FDDF24000E16750 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */; };
 		3E0D2BD21FDDFD7F00E16750 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D2BD11FDDFD7E00E16750 /* CustomTabBar.swift */; };
 		3E0D2BD41FDE078000E16750 /* ServiceProvidersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */; };
+		3E3390D11FE3AD0D007DFDE2 /* CustomerNewApptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */; };
 		3E438A401FE0CB26001459F7 /* TimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */; };
 		3E5DC8C71FE10BC000B502CA /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5DC8C61FE10BC000B502CA /* Appointment.swift */; };
 		3E6237C41FE0F11F00BC9699 /* NewAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */; };
@@ -70,6 +71,7 @@
 		3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		3E0D2BD11FDDFD7E00E16750 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvidersListViewController.swift; sourceTree = "<group>"; };
+		3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerNewApptTableViewController.swift; path = "Appointment Lookup/Calendar/Cells/CustomerNewApptTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		3E5DC8C61FE10BC000B502CA /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAppointmentViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				3E0D2BD11FDDFD7E00E16750 /* CustomTabBar.swift */,
 				3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */,
 				3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */,
+				3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */,
 				3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */,
 				3EA144D31FD4FA900020FA2D /* BusinessUser.swift */,
 				3EFB49E61FDF9F290004A1A0 /* TimeSlotViewController.swift */,
@@ -586,6 +589,7 @@
 				3EFB49E51FDF8C6F0004A1A0 /* FirebaseHelper.swift in Sources */,
 				3EFB49E71FDF9F290004A1A0 /* TimeSlotViewController.swift in Sources */,
 				3E62BC6A1FE1E9AA00D4B339 /* TimeSlotCell.swift in Sources */,
+				3E3390D11FE3AD0D007DFDE2 /* CustomerNewApptTableViewController.swift in Sources */,
 				3EFB49C51FDE265A0004A1A0 /* DateFormatters.swift in Sources */,
 				3E808BDE1FD2745B0079E83F /* AppDelegate.swift in Sources */,
 				3EE96DA71FE389E900EFF89C /* TimeSlotSettingsViewController.swift in Sources */,

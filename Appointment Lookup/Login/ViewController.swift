@@ -58,6 +58,27 @@ class ViewController: UIViewController {
                             //self.authenticationCheck()
                         } else {
                             self.ref = Database.database().reference()
+                            self.ref.child("businessUsers").observeSingleEvent(of: .value, with: { (snapShot) in
+                                if let snapDict = snapShot.value as? [String:AnyObject]{
+                                    for each in snapDict{
+                                        let userEmail = each.value["email"] as! String
+                                        let isBusiness:Bool = each.value["isBusiness"] as! Bool
+                                        if(userEmail == self.userName)
+                                        {
+                                            
+                                            if(isBusiness)
+                                            {
+                                                self.performSegue(withIdentifier: "loginToBusiness", sender: nil)
+                                            }
+                                            else
+                                            {
+                                                self.performSegue(withIdentifier: "signInToHome", sender: nil)
+                                            }
+                                        }
+                                    }
+                                }
+                            })
+                            
                             self.ref.child("users").observeSingleEvent(of: .value, with: { (snapShot) in
                                 if let snapDict = snapShot.value as? [String:AnyObject]{
                                     for each in snapDict{
@@ -78,6 +99,7 @@ class ViewController: UIViewController {
                                     }
                                 }
                             })
+                            
                             print("success")
                             
                         }
