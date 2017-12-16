@@ -37,6 +37,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         datePicker.datePickerMode = UIDatePickerMode.date
         startTimeSettings.text = "8:0"
         endTimeSettings.text = "16:0"
+        self.NumOfSlots.text = "2"
         datePicker.date = Date()
         startPicker.minuteInterval = 30
         endPicker.minuteInterval = 30
@@ -187,27 +188,23 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     func setTimeSlots(time :String){
         print(dateString, "in time slot")
         var timeString = time.components(separatedBy: " ")
-        var minutes = Int(timeString[0])
-        var noOfSlots = minutes!/30
+        let minutes = Int(timeString[0])
+        let noOfSlots = minutes!/30
         print(noOfSlots," == no of slots")
-        var Slots = [TimeSlot]()
+     
         var val = 2
         if NumOfSlots.text != ""{
             val = Int(NumOfSlots.text!)!
         }
-        var currentTime = dateToString(date: self.startPicker.date)
-        var date = self.startPicker.date
+        let currentTime = dateToString(date: self.startPicker.date)
+        let date = self.startPicker.date
         
         if(noOfSlots>0){
             for i in 0...noOfSlots-1{
-                var newSlot = TimeSlot()
                 let newTime = date.addingTimeInterval(30 * 60 * Double(i))
                 //print(newTime)
-                newSlot.time = dateToString(date: newTime)
-                newSlot.slot = val
-                print("-key-", keyString, "dat", self.dateString, newSlot.time, newSlot.slot)
-                self.ref.child("timeSlots").child(self.keyString).child(self.selectedDateTextField.text!).child(newSlot.time).setValue(newSlot.slot)
-                print(newSlot.time,"+",newSlot.slot)
+                print("-key-", keyString, "dat", self.dateString, dateToString(date: newTime), val)
+                self.ref.child("timeSlots").child(self.keyString).child(self.selectedDateTextField.text!).child(dateToString(date: newTime)).setValue(val)
             }
             print("Slots")
         }

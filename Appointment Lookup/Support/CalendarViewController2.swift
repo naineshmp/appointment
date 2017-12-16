@@ -21,6 +21,7 @@ class CalendarViewController2: UIViewController {
     let monthColor = UIColor.darkGray
     let selectedMonthColor = UIColor.white
     let currentDateSelectedViewColor = UIColor.black
+    
     func setKeyString() {
         ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
             print("-- shot per shot")
@@ -106,7 +107,7 @@ class CalendarViewController2: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.setKeyString()
+        //self.setKeyString()
         self.tableView.reloadData()
         print("---view did appear called-")
     }

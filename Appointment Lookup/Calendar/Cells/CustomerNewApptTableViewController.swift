@@ -134,7 +134,7 @@ class CustomerNewApptTableViewController: UITableViewController {
                 "businessId": self.keyString,
                 "customerEmail": cemail
                 ] as [String : Any]
-            self.ref.child("appointmentCustomerSide").child(self.key).setValue(appointmentCustomerSide)
+            self.ref.child("appointmentCustomerSide").child(self.keyString).setValue(appointmentCustomerSide)
             
             self.updateTimeSlot(selectedDate, selectedTime, slots)
             self.ref.child("appointments").child(self.keyString).child(self.selectedDate).childByAutoId().setValue(appointment)
