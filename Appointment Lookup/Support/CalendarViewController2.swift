@@ -13,7 +13,7 @@ class CalendarViewController2: UIViewController {
     var keyString: String = "NULL"
     var keydate: String = "NULL"
     var AppointmentList = Array<Appointment>()
-    private let segueApptDetail = "SegueApptDetail"
+    private let segueApptDetail = "toAppointmentDetailCustomer"
     private var selectedAppointmentId: String = "null"
     let formatter = DateFormatter()
     // Calendar Color
@@ -32,7 +32,7 @@ class CalendarViewController2: UIViewController {
                     {
                         self.keyString = each.key
                         print(self.keyString, "-- init")
-                        self.getAppointmentForDay(dateEntered: Date())
+                        self.getAllBookedProviders(dateEntered: Date()) // 123
                         return;
                     }
                 }
@@ -48,9 +48,10 @@ class CalendarViewController2: UIViewController {
             
             if let indexPath = tableView.indexPathForSelectedRow {
                 let cell = tableView.cellForRow(at: indexPath) as! AppointmentCell2
-                let controller = (segue.destination as! AppointmentDetailViewController)
+                let controller = (segue.destination as! AppointmentDetailCustomer)
                 controller.appointmentId =  cell.uiLabel.text!
                 controller.keyDate = self.keydate
+                controller.keyString = cell.businessId.text!
                 print("id--",cell.uiLabel.text!)
             }
         }
@@ -62,8 +63,23 @@ class CalendarViewController2: UIViewController {
         
     }
     
-    func getAppointmentForDay(dateEntered: Date){
+    func getAllBookedProviders(dateEntered: Date)
+    {
         self.AppointmentList.removeAll()
+        ref.child("appointmentCustomerSide").observeSingleEvent(of: .value, with: { (snapShot) in
+            print(snapShot)
+            if let snapDict = snapShot.value as? [String:AnyObject]{
+                for each in snapDict{
+                    let cemail = each.value["customerEmail"] as! String
+                    let businessId = each.value["businessId"] as! String
+                    self.getAppointmentForDay(dateEntered,businessId,cemail)
+                }
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+    func getAppointmentForDay(_ dateEntered: Date, _ keyString: String, _ email: String ){
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
         let date:String = dateFormat.string(from: dateEntered)
@@ -71,14 +87,18 @@ class CalendarViewController2: UIViewController {
             print(snapShot)
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
+                    let user = (Auth.auth().currentUser?.email)!
+                    if(each.value["email"] as! String == user){
                     let appointment = Appointment()
                     appointment.appointmentId = each.key
                     appointment.name = each.value["name"] as! String
                     appointment.phone = each.value["phone"] as! String
                     appointment.time = each.value["time"] as! String
                     appointment.notes = each.value["notes"] as! String
+                        appointment.businessId = keyString
                     self.AppointmentList.append(appointment)
                     print("Added", self.AppointmentList.count)
+                    }
                 }
                 self.tableView.reloadData()
             }
@@ -88,6 +108,7 @@ class CalendarViewController2: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.setKeyString()
         self.tableView.reloadData()
+        print("---view did appear called-")
     }
     
     override func viewDidLoad() {
@@ -152,7 +173,9 @@ extension CalendarViewController2: UITableViewDelegate, UITableViewDataSource {
             cell.nameLabel.text = AppointmentList[indexPath.row].name
             cell.noteLabel.text = AppointmentList[indexPath.row].notes
             cell.uiLabel.text = AppointmentList[indexPath.row].appointmentId
+            cell.businessId.text = AppointmentList[indexPath.row].businessId
             cell.uiLabel.isHidden = true
+            cell.businessId.isHidden = true
         }
         return cell
     }
@@ -329,7 +352,7 @@ extension CalendarViewController2: JTAppleCalendarViewDelegate {
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
         self.keydate = dateFormat.string(from: date)
-        self.getAppointmentForDay(dateEntered: date)
+        self.getAllBookedProviders(dateEntered: date)  //123
         self.tableView.reloadData()
         //  loadAppointmentsForDate(date: date)
         //    calendarViewDateChanged()

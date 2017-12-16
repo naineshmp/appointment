@@ -9,10 +9,10 @@
 import Foundation
 class Appointment{
     var appointmentId: String = ""
-    var charge: Double = 0
     var name: String = ""
     var notes: String = ""
     var phone: String = ""
     var time: String = ""
+    var businessId: String = ""
 }
 

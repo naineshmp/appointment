@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
+import FirebaseAuth
 class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     
     
@@ -15,25 +16,43 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-
+    @IBOutlet weak var selectedDateTextField: UITextField!
+    
     @IBOutlet weak var endTimeSettings: UITextField!
     @IBOutlet weak var startTimeSettings: UITextField!
-     let startPicker = UIDatePicker()
+    let startPicker = UIDatePicker()
     let endPicker = UIDatePicker()
+    let datePicker = UIDatePicker()
     var endTime = ""
     @IBOutlet weak var NumOfSlots: UITextField!
-    
+    var ref: DatabaseReference!
+    var keyString:String = ""
+    var dateString: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
         startPicker.datePickerMode = UIDatePickerMode.time
         endPicker.datePickerMode = UIDatePickerMode.time
-       startPicker.minuteInterval = 30
+        datePicker.datePickerMode = UIDatePickerMode.date
+        datePicker.date = Date()
+        startPicker.minuteInterval = 30
         endPicker.minuteInterval = 30
-//        thePicker.delegate = self
-//        thePicker.dataSource = self
-        startTimeSettings.delegate = self
+        var dateComponents = DateComponents()
+        dateComponents.hour = 8
+        dateComponents.minute = 0
+        var userCalendar = Calendar.current
+        var someDateTime = userCalendar.date(from: dateComponents)
+        startPicker.date = someDateTime!
         
+        dateComponents.hour = 16
+        dateComponents.minute = 0
+        userCalendar = Calendar.current
+        someDateTime = userCalendar.date(from: dateComponents)
+        endPicker.date = someDateTime!
+        
+        startTimeSettings.delegate = self
+        selectedDateTextField.delegate = self
         let startToolBar = UIToolbar()
         startToolBar.barStyle = UIBarStyle.default
         startToolBar.isTranslucent = true
@@ -54,12 +73,33 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         endToolBar.setItems([ endSpaceButton, endDoneButton], animated: false)
         endToolBar.isUserInteractionEnabled = true
         
+        let date = startPicker.date
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy"
+        self.dateString = dateFormat.string(from: Date())
+        selectedDateTextField.text = self.dateString
+        getToolBarForDate()
         startTimeSettings.inputView = startPicker
         startTimeSettings.inputAccessoryView = startToolBar
-
         endTimeSettings.inputView = endPicker
         endTimeSettings.inputAccessoryView = endToolBar
+        getKeyString()
         // Do any additional setup after loading the view.
+    }
+    
+    func getToolBarForDate()
+    {
+        let endToolBar = UIToolbar()
+        endToolBar.barStyle = UIBarStyle.default
+        endToolBar.isTranslucent = true
+        endToolBar.tintColor = UIColor.black
+        endToolBar.sizeToFit()
+        let endDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TimeSlotSettingsViewController.selectedDatePickerDone))
+        let endSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        endToolBar.setItems([ endSpaceButton, endDoneButton], animated: false)
+        endToolBar.isUserInteractionEnabled = true
+        selectedDateTextField.inputView = datePicker
+        selectedDateTextField.inputAccessoryView = endToolBar
     }
     
     
@@ -100,6 +140,17 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    @objc func selectedDatePickerDone() {
+        let date = datePicker.date
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "MM-dd-yyyy"
+        //print(dateFormat.string(from: date))
+        self.dateString = dateFormat.string(from: date)
+        print("-- DATE SELECTED", dateString)
+        selectedDateTextField.text = self.dateString
+        view.endEditing(true)
+    }
+    
     func dateToString(date : Date) -> String{
         let date = date
         let dateFormat = DateFormatter()
@@ -113,7 +164,25 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         return times
     }
     
+    public func getKeyString(){
+        ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
+            if let snapDict = snapShot.value as? [String:AnyObject]{
+                for each in snapDict{
+                    let userEmail = each.value["user"] as! String
+                    if(userEmail == (Auth.auth().currentUser?.email)!)
+                    {
+                        self.keyString = each.key
+                        return
+                    }
+                }
+            }
+        })
+    }
+    
+    
+    
     func setTimeSlots(time :String){
+        print(dateString, "in time slot")
         var timeString = time.components(separatedBy: " ")
         var minutes = Int(timeString[0])
         var noOfSlots = minutes!/30
@@ -125,16 +194,20 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         }
         var currentTime = dateToString(date: self.startPicker.date)
         var date = self.startPicker.date
-        for i in 0...noOfSlots-1{
-            var newSlot = TimeSlot()
-            let newTime = date.addingTimeInterval(30 * 60 * Double(i))
-            //print(newTime)
-            newSlot.time = dateToString(date: newTime)
-            newSlot.slot = val
-            Slots.append(newSlot)
-            print(newSlot.time,"+",newSlot.slot)
+        
+        if(noOfSlots>0){
+            for i in 0...noOfSlots-1{
+                var newSlot = TimeSlot()
+                let newTime = date.addingTimeInterval(30 * 60 * Double(i))
+                //print(newTime)
+                newSlot.time = dateToString(date: newTime)
+                newSlot.slot = val
+                print("-key-", keyString, "dat", self.dateString, newSlot.time, newSlot.slot)
+                self.ref.child("timeSlots").child(self.keyString).child(self.selectedDateTextField.text!).child(newSlot.time).setValue(newSlot.slot)
+                print(newSlot.time,"+",newSlot.slot)
+            }
+            print("Slots")
         }
-        print("Slots")
     }
     func offsetFrom(startDate: Date, endDate : Date) -> String {
         
@@ -155,6 +228,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 

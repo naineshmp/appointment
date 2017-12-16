@@ -12,5 +12,6 @@ class AppointmentCell2: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
+    @IBOutlet weak var businessId: UILabel!
     
 }

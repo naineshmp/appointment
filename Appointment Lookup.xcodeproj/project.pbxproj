@@ -29,6 +29,7 @@
 		3EA015BA1FD4A6F4000AC28D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */; };
 		3EA144D41FD4FA900020FA2D /* BusinessUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA144D31FD4FA900020FA2D /* BusinessUser.swift */; };
 		3EA5858E1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */; };
+		3EABFBCC1FE49D18004A0BFA /* AppointmentDetailCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABFBCB1FE49D18004A0BFA /* AppointmentDetailCustomer.swift */; };
 		3EAFD4D51FE22AAA00E03ED4 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */; };
 		3ECD46031FD4BFC3001B5FD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */; };
 		3ECD460A1FD4C2DC001B5FD2 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */; };
@@ -102,6 +103,7 @@
 		3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EA144D31FD4FA900020FA2D /* BusinessUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessUser.swift; sourceTree = "<group>"; };
 		3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlotTableViewCell.swift; sourceTree = "<group>"; };
+		3EABFBCB1FE49D18004A0BFA /* AppointmentDetailCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailCustomer.swift; sourceTree = "<group>"; };
 		3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */,
 				3ED914FA1FE4828200B6BA24 /* TimeSlotCell2.swift */,
 				3EF3C63C1FE48EE5000E2AFE /* AppointmentCell2.swift */,
+				3EABFBCB1FE49D18004A0BFA /* AppointmentDetailCustomer.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				3EE96DA71FE389E900EFF89C /* TimeSlotSettingsViewController.swift in Sources */,
 				3EFB49A51FDE21D40004A1A0 /* CalendarViewController.swift in Sources */,
 				3E0D2BD01FDDF24000E16750 /* CategoriesViewController.swift in Sources */,
+				3EABFBCC1FE49D18004A0BFA /* AppointmentDetailCustomer.swift in Sources */,
 				3ECD460B1FD4C2DC001B5FD2 /* About.swift in Sources */,
 				3E5DC8C71FE10BC000B502CA /* Appointment.swift in Sources */,
 				3E62BC661FE1DF2500D4B339 /* NewApptTableViewController.swift in Sources */,
