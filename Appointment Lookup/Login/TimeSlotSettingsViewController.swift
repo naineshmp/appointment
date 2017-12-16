@@ -35,6 +35,8 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         startPicker.datePickerMode = UIDatePickerMode.time
         endPicker.datePickerMode = UIDatePickerMode.time
         datePicker.datePickerMode = UIDatePickerMode.date
+        startTimeSettings.text = "8:0"
+        endTimeSettings.text = "16:0"
         datePicker.date = Date()
         startPicker.minuteInterval = 30
         endPicker.minuteInterval = 30
@@ -83,7 +85,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         startTimeSettings.inputAccessoryView = startToolBar
         endTimeSettings.inputView = endPicker
         endTimeSettings.inputAccessoryView = endToolBar
-        getKeyString()
+
         // Do any additional setup after loading the view.
     }
     
@@ -121,7 +123,8 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func SaveToDB(_ sender: UIButton) {
         
         var time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
-        setTimeSlots(time: time)
+        getKeyString(time: time)
+        
         
         
     }
@@ -164,7 +167,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         return times
     }
     
-    public func getKeyString(){
+    public func getKeyString(time: String){
         ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
@@ -172,7 +175,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
                     if(userEmail == (Auth.auth().currentUser?.email)!)
                     {
                         self.keyString = each.key
-                        return
+                        self.setTimeSlots(time: time)
                     }
                 }
             }
@@ -222,6 +225,10 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let string = formatter.string(from: previousDate, to: now)
         print(string,"Difference")
         return string!
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+      
     }
     
     override func didReceiveMemoryWarning() {
