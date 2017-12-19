@@ -12,7 +12,7 @@ import JTAppleCalendar
 import FirebaseDatabase
 import FirebaseAuth
 
-class CustomerNewApptTableViewController: UITableViewController {
+class CustomerNewApptTableViewController: UITableViewController, UITextFieldDelegate {
     let formatter = DateFormatter()
     var calendarViewHidden = true
     var businessId:String = ""
@@ -93,13 +93,17 @@ class CustomerNewApptTableViewController: UITableViewController {
         calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates( [Date()] )
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CustomerNewApptTableViewController.hideKeyboard))
-        tapGesture.cancelsTouchesInView = true
+        tapGesture.cancelsTouchesInView = false
         tableView.addGestureRecognizer(tapGesture)
+        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, -20, 0);
     }
+
+    
 
     @objc func hideKeyboard() {
         tableView.endEditing(true)
     }
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -249,14 +253,16 @@ extension CustomerNewApptTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.white
+        let headerView = UIView(frame: CGRect())
+        headerView.isOpaque = false
         return headerView
     }
 
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
-        footerView.backgroundColor = UIColor.white
+//        footerView.init
+//        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, 0.01f)];
+         footerView.isOpaque = false
         return footerView
     }
 
@@ -308,6 +314,17 @@ extension CustomerNewApptTableViewController {
         }
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("inside touch begin first")
+        if let touch = touches.first {
+            if self.CustomerName.isFirstResponder && touch.view != self.CustomerName {
+                self.CustomerName.resignFirstResponder()
+            }
+        }
+        super.touchesBegan(touches, with: event)
+        //self.view.endEditing(true)
+    }
+    
     func setupViewsFromCalendar(from visibleDates: DateSegmentInfo ) {
         guard let date = visibleDates.monthDates.first?.date else { return }
 
@@ -445,6 +462,17 @@ extension CustomerNewApptTableViewController: NSFetchedResultsControllerDelegate
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        print("lose focus")
+        return true
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("--busted")
+        return true
     }
 }
 
