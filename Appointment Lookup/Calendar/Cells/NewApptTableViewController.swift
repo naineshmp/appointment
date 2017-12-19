@@ -21,6 +21,7 @@ class NewApptTableViewController: UITableViewController {
     var name: String = ""
     var phone: String = ""
     var notes: String = ""
+    var email: String = ""
     var slots: Int = 0
     var ref: DatabaseReference! = Database.database().reference()
     // Calendar Color
@@ -39,26 +40,55 @@ class NewApptTableViewController: UITableViewController {
     @IBOutlet weak var CustomerEmail: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
     
-    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+    
+    
+    func showAlert(_ title1: String,_ message : String,_ title2: String ){
+        let alertController = UIAlertController(title: title1, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alertController.addAction(UIAlertAction(title: title2, style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func confirmAppointment(_ sender: UIBarButtonItem) {
-        if CustomerName.text != nil && selectedTime != "" && phoneNumber.text != nil{
-            saveAppointment()
+    func validatePhone(value: String) -> Bool {
+        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: value)
+        return result
+    }
+    
+    @IBAction func confirmAppointment(_ sender: UIBarButtonItem) {       
+        if CustomerName.text != nil && selectedTime != "" && phoneNumber.text != "" && CustomerEmail.text != "" {
+            if self.validatePhone(value: phoneNumber.text!){
+                if self.isValidEmail(testStr: self.CustomerEmail.text!){
+                    saveAppointment()
+                    showAlert("Success", "Appointment Successfully Added", "Dismiss")
+                }
+                else
+                {
+                    showAlert("Error", "Invalid Email Example", "Dismiss")
+                }
+            }
+                
+            else{
+                showAlert("Error", "Invalid Phone Number Example : +16194166883", "Dismiss")
+            }
         }
+        else{
+            showAlert("Error", "Please enter all data.", "Dismiss")
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTimeSlots" {
-             let controller = (segue.destination as! TimeSlotsCVC)
-                controller.keyDate =  self.selectedDate
-                controller.name = self.CustomerName.text!
-                controller.notes = self.noteTextView.text
-                controller.phone = self.phoneNumber.text!
-            
-            }
+            let controller = (segue.destination as! TimeSlotsCVC)
+            controller.keyDate =  self.selectedDate
+            controller.name = self.CustomerName.text!
+            controller.notes = self.noteTextView.text
+            controller.phone = self.phoneNumber.text!
+            controller.email = self.CustomerEmail.text!
         }
+    }
     
     
     func saveAppointment(){
@@ -75,12 +105,21 @@ class NewApptTableViewController: UITableViewController {
         super.viewDidLoad()
         setupCalendarView()
         noLargeTitles()
-      setKeyString()
+        setKeyString()
         setupKeyboardNotification()
         
         calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates( [Date()] )
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CustomerNewApptTableViewController.hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tapGesture)
+        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, -20, 0);
     }
+    
+    @objc func hideKeyboard() {
+        tableView.endEditing(true)
+    }
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -88,6 +127,22 @@ class NewApptTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         setKeyString()
+        self.timeSlotLabel.text = "Time of Appointment                  " + self.selectedTime
+    }
+    
+    func clearData(){
+        self.CustomerName.text = ""
+        self.phoneNumber.text = ""
+        self.noteTextView.text = ""
+        self.timeSlotLabel.text = "Time of Appointment"
+        self.CustomerEmail.text = ""
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let result = emailTest.evaluate(with: testStr)
+        return result
     }
     
     func setKeyString() {
@@ -120,6 +175,7 @@ class NewApptTableViewController: UITableViewController {
             ] as [String : Any]
         self.updateTimeSlot(selectedDate, selectedTime, slots-1)
         self.ref.child("appointments").child(self.keyString).child(self.selectedDate).childByAutoId().setValue(appointment)
+        clearData()
     }
     
     func updateTimeSlot(_ date: String,_ time: String,_ slot: Int){
@@ -131,6 +187,8 @@ class NewApptTableViewController: UITableViewController {
         self.CustomerName.text = self.name
         self.phoneNumber.text = self.phone
         self.noteTextView.text = self.notes
+        self.CustomerEmail.text = self.email
+        
         let dateFormat = DateFormatter()
         if selectedDate != ""{
             dateFormat.dateFormat = "MM-dd-yyyy"
@@ -198,12 +256,13 @@ extension NewApptTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.white
+        headerView.isOpaque = false
         return headerView
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
-        footerView.backgroundColor = UIColor.white
+        footerView.isOpaque = false
         return footerView
     }
     
@@ -264,10 +323,10 @@ extension NewApptTableViewController {
         calendarView.selectDates( [date] )
         
         updateDateDetailLabel(date: date)
-   
+        
     }
     
-   
+    
 }
 
 
@@ -290,7 +349,7 @@ extension NewApptTableViewController {
     }
     
     func fetchAppointmentsForDay() {
-     
+        
     }
 }
 

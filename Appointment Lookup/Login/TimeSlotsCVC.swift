@@ -16,6 +16,7 @@ class TimeSlotsCVC: UICollectionViewController {
     var keyDate:String = ""
     var name: String = ""
     var phone: String = ""
+    var email: String = ""
     var notes: String = ""
     var selectedTimeSlot: Int = 0
     @IBOutlet var calendarView: UICollectionView!
@@ -63,6 +64,7 @@ class TimeSlotsCVC: UICollectionViewController {
                 toViewController.phone = self.phone
                 toViewController.name = self.name
                 toViewController.slots = self.selectedTimeSlot
+                toViewController.email = self.email
                 print(toViewController.selectedTime)
             }
         }

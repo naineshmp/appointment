@@ -86,7 +86,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         startTimeSettings.inputAccessoryView = startToolBar
         endTimeSettings.inputView = endPicker
         endTimeSettings.inputAccessoryView = endToolBar
-
+        NumOfSlots.keyboardType = UIKeyboardType.numberPad
         // Do any additional setup after loading the view.
     }
     
@@ -128,6 +128,10 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         
         
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     @objc func endDonePicker() {
