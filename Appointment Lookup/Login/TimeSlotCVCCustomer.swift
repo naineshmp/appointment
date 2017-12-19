@@ -168,6 +168,12 @@
                 
                 print("----" , TimeSlotList[indexPath.row].time)
             }
+            else{
+                let alertController = UIAlertController(title: "UNAVAILABLE", message: "SORRY WE ARE BOOKED FOR THE DAY!", preferredStyle: UIAlertControllerStyle.actionSheet)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
             return cell
         }
         

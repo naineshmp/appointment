@@ -51,14 +51,22 @@ class CustomerNewApptTableViewController: UITableViewController {
     
     @IBAction func confirmAppointment(_ sender: UIBarButtonItem) {
         if CustomerName.text != nil && selectedTime != "" && phoneNumber.text != nil{
+            if self.validatePhone(value: phoneNumber.text!){
             saveAppointment()
             showAlert("Success", "Appointment Successfully Added", "Dismiss")
+            }
+            else{
+                 showAlert("Error", "Invalid Phone Number", "Dismiss")
+            }
+            
         }
         else{
             showAlert("Error", "Please enter all data.", "Dismiss")
         }
     }
 
+  
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTimeSlotsCustomer" {
              let controller = (segue.destination as! TimeSlotCVCCustomer)
@@ -83,7 +91,6 @@ class CustomerNewApptTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendarView()
-        noLargeTitles()
       //setKeyString()
         setupKeyboardNotification()
         self.key = ref.child("appointmentCustomerSide").childByAutoId().key;
@@ -117,6 +124,13 @@ class CustomerNewApptTableViewController: UITableViewController {
 
         })
         return;
+    }
+    
+    func validatePhone(value: String) -> Bool {
+        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: value)
+        return result
     }
     
     func showAlert(_ title1: String,_ message : String,_ title2: String ){
@@ -183,12 +197,7 @@ class CustomerNewApptTableViewController: UITableViewController {
         }
     }
 
-    func noLargeTitles(){
-        if #available(iOS 11.0, *) {
-            navigationItem.largeTitleDisplayMode = .never
-            tableView.dragDelegate = self as? UITableViewDragDelegate
-        }
-    }
+    
 
     func setupKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(NewApptTableViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
