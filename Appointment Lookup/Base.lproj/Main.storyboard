@@ -221,9 +221,9 @@
                         <outlet property="usernameField" destination="WUv-YV-UvS" id="ynk-l1-57W"/>
                         <segue destination="SMT-j6-2MA" kind="show" identifier="toRegisterBusinessController" id="1UI-U2-eod"/>
                         <segue destination="6nH-G1-ujo" kind="show" identifier="toRegisterController" id="3bi-gn-X8J"/>
-                        <segue destination="F2A-KX-rGx" kind="show" identifier="toForgotPassword" id="u6A-mk-v3K"/>
                         <segue destination="TlF-Ph-Noa" kind="modal" identifier="signInToHome" id="p0n-nO-gTm"/>
                         <segue destination="CVz-Z1-QPn" kind="presentation" identifier="loginToBusiness" id="hhL-Db-vaJ"/>
+                        <segue destination="F2A-KX-rGx" kind="show" identifier="toForgotPassword" id="ffq-2e-Wn2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5JB-TY-d8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,9 +321,16 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="YqV-je-RoS"/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="q6q-8d-1NN"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="q6q-8d-1NN">
+                        <barButtonItem key="rightBarButtonItem" title="SignOut" id="UWg-dW-yRQ">
+                            <connections>
+                                <action selector="signOutClicked:" destination="qDe-OW-k8y" id="fKa-sx-q4A"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="a6G-xR-7XF" kind="show" identifier="listToServiceProvider" id="rDc-hB-x3w"/>
+                        <segue destination="DBP-gE-1Zk" kind="show" identifier="userToSignIn" id="muH-nK-VO3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9wW-gc-X4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -599,6 +606,11 @@
                         <viewLayoutGuide key="safeArea" id="J3x-EW-3oe"/>
                     </view>
                     <navigationItem key="navigationItem" id="SWa-YN-Cnn">
+                        <barButtonItem key="leftBarButtonItem" title="SignOut" id="6OK-ye-gJV">
+                            <connections>
+                                <action selector="SignOutClicked:" destination="Hdm-wZ-W9M" id="2hZ-Rn-TdI"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ACB-7f-PtN">
                             <connections>
                                 <segue destination="h0c-Jw-Fhm" kind="show" id="ITj-qf-KNh"/>
@@ -608,11 +620,12 @@
                     <connections>
                         <outlet property="calendarView" destination="N9B-An-YTS" id="ezX-ih-GXu"/>
                         <outlet property="tableView" destination="UDa-WE-Ml4" id="MEs-VF-dzG"/>
+                        <segue destination="DBP-gE-1Zk" kind="presentation" identifier="businessToSignIn" id="lGm-Us-09k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4eO-y8-CtO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108" y="1834"/>
+            <point key="canvasLocation" x="1447.2" y="1833.7331334332835"/>
         </scene>
         <!--New Appointment View Controller-->
         <scene sceneID="Ivb-a4-vLt">
@@ -975,7 +988,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sC-QL-nLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1936.8" y="1833.7331334332835"/>
+            <point key="canvasLocation" x="2276" y="1833.7331334332835"/>
         </scene>
         <!--Time SlotsCVC-->
         <scene sceneID="IHo-ir-BMj">
@@ -1026,7 +1039,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faC-x0-ccB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3173.5999999999999" y="1833.7331334332835"/>
+            <point key="canvasLocation" x="3512.8000000000002" y="1833.7331334332835"/>
         </scene>
         <!--Time Slot Settings View Controller-->
         <scene sceneID="3ht-HA-LcE">
@@ -1242,7 +1255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jwb-B0-rKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2039" y="1416"/>
+            <point key="canvasLocation" x="-1700" y="1415.4422788605698"/>
         </scene>
         <!--Register New Business-->
         <scene sceneID="frl-Ca-oBO">
@@ -1367,7 +1380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hru-ZP-MbS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1282" y="1415"/>
+            <point key="canvasLocation" x="-943.20000000000005" y="1414.5427286356824"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PEX-yO-YVj">
@@ -1438,7 +1451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qn0-Ax-WdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2807" y="1417"/>
+            <point key="canvasLocation" x="-2636" y="1415"/>
         </scene>
         <!--Custom Tab Bar-->
         <scene sceneID="gB6-R0-r5G">
@@ -1458,7 +1471,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzw-Re-Lck" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-382" y="1834"/>
+            <point key="canvasLocation" x="-44" y="1833.7331334332835"/>
         </scene>
         <!--Appointments-->
         <scene sceneID="gZC-mX-fgg">
@@ -1493,7 +1506,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrW-0S-TCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="1834"/>
+            <point key="canvasLocation" x="740" y="1833.7331334332835"/>
         </scene>
         <!--Time Slot-->
         <scene sceneID="E3J-yR-r6q">
@@ -2425,9 +2438,11 @@
         <image name="today" width="36" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="VJq-sL-064"/>
         <segue reference="J3e-2F-WUy"/>
         <segue reference="hhL-Db-vaJ"/>
-        <segue reference="tId-ca-Les"/>
+        <segue reference="ITj-qf-KNh"/>
         <segue reference="p0n-nO-gTm"/>
+        <segue reference="NBW-m4-qhh"/>
     </inferredMetricsTieBreakers>
 </document>

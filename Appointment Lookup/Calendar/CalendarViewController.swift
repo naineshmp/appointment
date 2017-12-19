@@ -14,6 +14,11 @@ import FirebaseAuth
 
 class CalendarViewController: UIViewController {
     
+    @IBAction func SignOutClicked(_ sender: UIBarButtonItem) {
+        try!
+            Auth.auth().signOut()
+        performSegue(withIdentifier: "businessToSignIn", sender: self)
+    }
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     var ref: DatabaseReference!
     @IBOutlet weak var tableView: UITableView!
@@ -168,6 +173,26 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Fetch Appointment
+            print("--- delete called ------")
+            let cell = tableView.cellForRow(at: indexPath) as! AppointmentCell
+            let appointmentId =  cell.uiLabel.text!
+            let keyDate = self.keydate
+            let businessId = self.keyString
+            ref.child("appointments").child(businessId).child(keyDate).child(appointmentId).removeValue { error, ref in
+                if error != nil {
+                    print("error \(error)")
+                    let alertController = UIAlertController(title: "Error", message: "Appointment Delete failed!. Please try again", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+                else{
+                    print("Removed Successs")
+                    self.AppointmentList.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                    self.tableView.reloadInputViews()
+                }
+            }
+            print(appointmentId, "-- id ", keyDate, "-- dagte", businessId)
             
         }
     }

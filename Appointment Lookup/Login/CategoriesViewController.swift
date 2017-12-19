@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CategoryTableViewCell: UITableViewCell {
     @IBOutlet var categoryImage: UIImageView!
@@ -15,6 +16,11 @@ class CategoryTableViewCell: UITableViewCell {
 
 class CategoriesViewController: UITableViewController {
     
+    @IBAction func signOutClicked(_ sender: UIBarButtonItem) {
+        try!
+        Auth.auth().signOut()
+        performSegue(withIdentifier: "userToSignIn", sender: self)
+    }
     //DataSource
     var categories: [String] = []
     var images: [String] = []
@@ -105,7 +111,6 @@ class CategoriesViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-    
     
     
 }

@@ -151,6 +151,8 @@ class CustomerNewApptTableViewController: UITableViewController {
         self.CustomerName.text = self.name
         self.phoneNumber.text = self.phone
         self.noteTextView.text = self.notes
+        self.timeSlotLabel.text = "Time of Appointment                  " + self.selectedTime
+
         let dateFormat = DateFormatter()
         if selectedDate != ""{
             dateFormat.dateFormat = "MM-dd-yyyy"
