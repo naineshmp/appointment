@@ -35,7 +35,6 @@
             print(keyDate,"----- date passed")
             super.viewDidLoad()
             print(appointmentDate)
-            setupTimeSlotter()
             navBarDropShadow()
             ref = Database.database().reference()
             print(self.keyString)
@@ -83,7 +82,6 @@
                         if(userEmail == self.businessId)
                         {
                             self.keyString = each.key
-                            print("key selected")
                             self.getAllTimeSlots()
                         }
                     }
@@ -95,7 +93,17 @@
             self.TimeSlotList.removeAll()
             print("started with keystring", self.keyString )
             ref.child("timeSlots").child(self.keyString).child(keyDate).observeSingleEvent(of: .value, with: { (snapShot) in
+                let x = snapShot.value
+                print(x,"------ this needs to be checked")
+                if x is NSNull
+                {
+                    let alertController = UIAlertController(title: "UNAVAILABLE", message: "SORRY WE ARE BOOKED FOR THE DAY!", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
                 if let snapDict = snapShot.value as? [String:AnyObject]{
+                   
                     for each in snapDict{
                         let timeSlot = TimeSlot()
                         timeSlot.time = each.key
@@ -111,24 +119,15 @@
                     self.TimeSlotList.sort { $0.time.compare($1.time, options: .numeric) == .orderedAscending }
                     print("count","",self.TimeSlotList.count)
                     self.calendarView.reloadData()
+                   
                     //                self.calendarView.reloadSections()
                     self.collectionView?.reloadSections(IndexSet(integer : 0))
                 }
+                
             })
             
         }
-        
-        func setupTimeSlotter() {
-            timeSlotter.configureTimeSlotter(openTimeHour: 9, openTimeMinutes: 0, closeTimeHour: 17, closeTimeMinutes: 0, appointmentLength: 30, appointmentInterval: 15)
-            //    if let appointmentsArray = currentAppointments {
-            //     // timeSlotter.currentAppointments = appointmentsArray.map { $0.date }
-            //    }
-            //    guard let timeSlots = timeSlotter.getTimeSlotsforDate(date: appointmentDate) else {
-            //      print("There is no appointments")
-            //      return }
-            //
-            //    self.timeSlots = timeSlots
-        }
+  
         
         func navBarDropShadow() {
             self.navigationController?.navigationBar.layer.masksToBounds = false
@@ -168,15 +167,12 @@
                 
                 print("----" , TimeSlotList[indexPath.row].time)
             }
-            else{
-                let alertController = UIAlertController(title: "UNAVAILABLE", message: "SORRY WE ARE BOOKED FOR THE DAY!", preferredStyle: UIAlertControllerStyle.actionSheet)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
-                
-                self.present(alertController, animated: true, completion: nil)
-            }
             return cell
         }
         
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.view.endEditing(true)
+        }
         
         
         override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -44,10 +44,7 @@ class CustomerNewApptTableViewController: UITableViewController {
     
     @IBOutlet weak var phoneNumber: UITextField!
     
-    
-    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
+  
     
     @IBAction func confirmAppointment(_ sender: UIBarButtonItem) {
         if CustomerName.text != nil && selectedTime != "" && phoneNumber.text != nil{
@@ -56,16 +53,14 @@ class CustomerNewApptTableViewController: UITableViewController {
             showAlert("Success", "Appointment Successfully Added", "Dismiss")
             }
             else{
-                 showAlert("Error", "Invalid Phone Number", "Dismiss")
+                showAlert("Error", "Invalid Phone Number Example : +16194166883", "Dismiss")
             }
             
         }
         else{
             showAlert("Error", "Please enter all data.", "Dismiss")
         }
-    }
-
-  
+    }  
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTimeSlotsCustomer" {
@@ -97,8 +92,15 @@ class CustomerNewApptTableViewController: UITableViewController {
         
         calendarView.scrollToDate(Date(), animateScroll: false)
         calendarView.selectDates( [Date()] )
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CustomerNewApptTableViewController.hideKeyboard))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
     }
 
+    @objc func hideKeyboard() {
+        tableView.endEditing(true)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
