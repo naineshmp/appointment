@@ -52,6 +52,10 @@ class CustomerNewApptTableViewController: UITableViewController {
     @IBAction func confirmAppointment(_ sender: UIBarButtonItem) {
         if CustomerName.text != nil && selectedTime != "" && phoneNumber.text != nil{
             saveAppointment()
+            showAlert("Success", "Appointment Successfully Added", "Dismiss")
+        }
+        else{
+            showAlert("Error", "Please enter all data.", "Dismiss")
         }
     }
 
@@ -114,6 +118,13 @@ class CustomerNewApptTableViewController: UITableViewController {
         })
         return;
     }
+    
+    func showAlert(_ title1: String,_ message : String,_ title2: String ){
+        let alertController = UIAlertController(title: title1, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alertController.addAction(UIAlertAction(title: title2, style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     func addAppointment()
     {
@@ -138,6 +149,8 @@ class CustomerNewApptTableViewController: UITableViewController {
             
             self.updateTimeSlot(selectedDate, selectedTime, slots)
             self.ref.child("appointments").child(self.keyString).child(self.selectedDate).childByAutoId().setValue(appointment)
+            self.clearData()
+            
         }
        
     }
@@ -145,6 +158,13 @@ class CustomerNewApptTableViewController: UITableViewController {
     func updateTimeSlot(_ date: String,_ time: String,_ slot: Int){
         print("-- time slot changed --", date, "date", time, "time", slot, "slot", self.keyString, "<- key string", "business id", self.businessId)
         self.ref.child("timeSlots").child(keyString).child(date).child(time).setValue(slot)
+    }
+    
+    func clearData(){
+        self.CustomerName.text = ""
+        self.phoneNumber.text = ""
+        self.noteTextView.text = ""
+        self.timeSlotLabel.text = "Time of Appointment"
     }
 
     override func viewWillAppear(_ animated: Bool) {
