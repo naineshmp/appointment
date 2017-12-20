@@ -25,6 +25,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)    }
+    
     //Functions to hide navigation bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -44,7 +47,6 @@ class ViewController: UIViewController {
     @IBAction func enterButton(_ sender: UIButton) {
         userName = usernameField.text!
         passWord = passwordField.text!
-        
         logUserIn(userName!, passWord!)
     }
     
@@ -54,6 +56,7 @@ class ViewController: UIViewController {
             if error == nil {
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
+                        // removed admin@test.com account... date DECEMBER 20
                         if Auth.auth().currentUser?.email == "admin@test.com" {
                             //self.authenticationCheck()
                         } else {
@@ -132,34 +135,6 @@ class ViewController: UIViewController {
         self.performSegue(withIdentifier: "toForgotPassword", sender: nil)
     }
     
-    //    func authenticationCheck() {
-    //        let authenticationContext = LAContext()
-    //        var error: NSError?
-    //
-    //        guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-    //
-    //            //alert if no biometric sensors found
-    //            showAlertWithTitle("Error", "This device does not have FaceID/TouchID Sensor.")
-    //            return
-    //        }
-    //
-    //        authenticationContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Confirm you are the Administrator", reply: { [unowned self] (success, error) -> Void in
-    //
-    //            if success {
-    //                DispatchQueue.main.async() { () -> Void in
-    //                    self.performSegue(withIdentifier: "toAdmin", sender: nil)
-    //                }
-    //            }
-    //            else {
-    //                if let error = error {
-    //                    let message = self.errorMessageForLAErrorCode((error as NSError).code)
-    //                    self.showAlertWithTitle("Error", message)
-    //                }
-    //            }
-    //
-    //        })
-    //    }
-    
     func showAlertWithTitle(_ title: String, _ message: String) {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -192,9 +167,7 @@ class ViewController: UIViewController {
         case Int(kLAErrorBiometryLockout):
             message = "Too many failed attempts."
             print("Too many failed attempts")
-        case Int(kLAErrorBiometryNotAvailable):
-            message = "FaceID/TouchID is not available on the device"
-            print("FaceID/TouchID is not available on the device")
+            
         case LAError.userCancel.rawValue:
             message = "The user did cancel"
             print("The user did cancel")
