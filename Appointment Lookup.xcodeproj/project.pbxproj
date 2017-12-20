@@ -78,7 +78,7 @@
 		3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		3E0D2BD11FDDFD7E00E16750 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvidersListViewController.swift; sourceTree = "<group>"; };
-		3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerNewApptTableViewController.swift; path = "Appointment Lookup/Calendar/Cells/CustomerNewApptTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerNewApptTableViewController.swift; path = "Appointment Lookup/Customer/CustomerNewApptTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSlot.swift; sourceTree = "<group>"; };
 		3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSideCalendarViewCell.swift; sourceTree = "<group>"; };
 		3E5DC8C61FE10BC000B502CA /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
@@ -169,6 +169,57 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3E3139471FEA13DA00A3D442 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				3E3139491FEA140500A3D442 /* Cell */,
+				3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */,
+				3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */,
+				3EABFBCB1FE49D18004A0BFA /* AppointmentDetailCustomer.swift */,
+				3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */,
+				3ED914FC1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift */,
+				3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */,
+				3EF3C63E1FE48F2D000E2AFE /* CalendarViewController2.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		3E3139481FEA13E700A3D442 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				3E31394A1FEA147900A3D442 /* Cells */,
+				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
+				3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */,
+				3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */,
+				3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */,
+				3EFB49E61FDF9F290004A1A0 /* TimeSlotViewController.swift */,
+				3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		3E3139491FEA140500A3D442 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */,
+				3EF3C63C1FE48EE5000E2AFE /* AppointmentCell2.swift */,
+				3ED914FA1FE4828200B6BA24 /* TimeSlotCell2.swift */,
+				3EF3C63A1FE48EA1000E2AFE /* CalendarDayCell2.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3E31394A1FEA147900A3D442 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */,
+				3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */,
+				3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */,
+				3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		3E808BD11FD2745B0079E83F = {
 			isa = PBXGroup;
 			children = (
@@ -194,8 +245,9 @@
 		3E808BDC1FD2745B0079E83F /* Appointment Lookup */ = {
 			isa = PBXGroup;
 			children = (
+				3E3139481FEA13E700A3D442 /* Business */,
+				3E3139471FEA13DA00A3D442 /* Customer */,
 				3EFB49C81FDE26600004A1A0 /* Support */,
-				3EFB49A31FDE21AA0004A1A0 /* Calendar */,
 				3ECD46041FD4C012001B5FD2 /* Login */,
 				3EA015B91FD4A6F4000AC28D /* GoogleService-Info.plist */,
 				3E808BDD1FD2745B0079E83F /* AppDelegate.swift */,
@@ -228,63 +280,27 @@
 		3ECD46041FD4C012001B5FD2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */,
 				3ECD46021FD4BFC3001B5FD2 /* ViewController.swift */,
 				3ECD46071FD4C2DC001B5FD2 /* About.swift */,
-				3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */,
 				3ECD46061FD4C2DC001B5FD2 /* PasswordController.swift */,
 				3E0D2BD11FDDFD7E00E16750 /* CustomTabBar.swift */,
 				3ECD460F1FD4CD2E001B5FD2 /* RegisterBusinessController.swift */,
-				3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */,
-				3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */,
 				3ECD46081FD4C2DC001B5FD2 /* RegisterController.swift */,
 				3EA144D31FD4FA900020FA2D /* BusinessUser.swift */,
-				3EFB49E61FDF9F290004A1A0 /* TimeSlotViewController.swift */,
-				3E6237C31FE0F11F00BC9699 /* NewAppointmentViewController.swift */,
-				3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */,
-				3ED914FC1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		3EFB49A31FDE21AA0004A1A0 /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				3EFB49E41FDF8C6F0004A1A0 /* FirebaseHelper.swift */,
-				3EFB49A81FDE22440004A1A0 /* Cells */,
-				3E62BC691FE1E9A900D4B339 /* TimeSlotCell.swift */,
-				3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */,
-				3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
-		3EFB49A81FDE22440004A1A0 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
-				3EFB49A91FDE224F0004A1A0 /* CalendarDayCell.swift */,
-				3EF3C63A1FE48EA1000E2AFE /* CalendarDayCell2.swift */,
-				3EA5858D1FE0B1FD0047CE39 /* TimeSlotTableViewCell.swift */,
-				3E7456B11FE21AD300ACF552 /* AppointmentCell.swift */,
-				3E46F74B1FE475A600BC1A56 /* CustomerSideCalendarViewCell.swift */,
-				3ED914FA1FE4828200B6BA24 /* TimeSlotCell2.swift */,
-				3EF3C63C1FE48EE5000E2AFE /* AppointmentCell2.swift */,
-				3EABFBCB1FE49D18004A0BFA /* AppointmentDetailCustomer.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		3EFB49C81FDE26600004A1A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				3EFB49E41FDF8C6F0004A1A0 /* FirebaseHelper.swift */,
 				3EFB49C21FDE26590004A1A0 /* DateFormatters.swift */,
 				3EFB49C31FDE265A0004A1A0 /* TimeSlotFormatter.swift */,
 				3EFB49C41FDE265A0004A1A0 /* TimeSlotter.swift */,
 				3E438A3F1FE0CB26001459F7 /* TimeSlot.swift */,
 				3E6237C51FE0F61D00BC9699 /* DateHelper.swift */,
 				3E5DC8C61FE10BC000B502CA /* Appointment.swift */,
-				3EF3C63E1FE48F2D000E2AFE /* CalendarViewController2.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";

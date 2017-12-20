@@ -36,7 +36,7 @@ class RegisterController: UIViewController {
     var passWordRepeat: String?
     
     func validatePhone(value: String) -> Bool {
-        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
+            let PHONE_REGEX = "^[0-9]{10}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         let result =  phoneTest.evaluate(with: value)
         return result
@@ -46,11 +46,6 @@ class RegisterController: UIViewController {
         userName = emailRegisterField.text!
         passWord = passwordRegisterField.text!
         passWordRepeat = passwordRepeatRegisterField.text!
-        
-        //For debugging
-        print(userName!)
-        print(passWord!)
-        print(passWordRepeat!)
         
         if passWord==passWordRepeat {
             if(self.usernameTextField.text != ""  && self.phoneTextField.text != ""){

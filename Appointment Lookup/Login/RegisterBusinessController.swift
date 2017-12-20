@@ -87,7 +87,7 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
         print(passWordRepeat!)
         
         if passWord==passWordRepeat {
-            if(self.nameRegisterTextField.text != ""  && self.phoneRegisterField.text != ""){
+            if(self.nameRegisterTextField.text != ""  && self.phoneRegisterField.text != "" && self.categoryText.text != ""){
                 if(self.validatePhone(value: self.phoneRegisterField.text!)){
                     registerUser()
                 }
@@ -132,7 +132,7 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
     }
     
     func validatePhone(value: String) -> Bool {
-        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
+            let PHONE_REGEX = "^[0-9]{10}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         let result =  phoneTest.evaluate(with: value)
         return result
