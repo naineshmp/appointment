@@ -109,7 +109,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let date = startPicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
-        //print(dateFormat.string(from: date))
         let calendar = Calendar.current
         let comp = calendar.dateComponents([.hour, .minute], from: date)
         let hour = comp.hour
@@ -132,7 +131,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let date = endPicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
-        //print(dateFormat.string(from: date))
         let calendar = Calendar.current
         let comp = calendar.dateComponents([.hour, .minute], from: date)
         let hour = comp.hour
@@ -152,9 +150,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let date = datePicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
-        //print(dateFormat.string(from: date))
         self.dateString = dateFormat.string(from: date)
-        print("-- DATE SELECTED", dateString)
         selectedDateTextField.text = self.dateString
         view.endEditing(true)
     }
@@ -163,7 +159,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let date = date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
-        //print(dateFormat.string(from: date))
         let calendar = Calendar.current
         let comp = calendar.dateComponents([.hour, .minute], from: date)
         let hour = comp.hour
@@ -190,11 +185,9 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     
     
     func setTimeSlots(time :String){
-        print(dateString, "in time slot")
         var timeString = time.components(separatedBy: " ")
         let minutes = Int(timeString[0])
         let noOfSlots = minutes!/30
-        print(noOfSlots," == no of slots")
         var val = 2
         if NumOfSlots.text != ""{
             val = Int(NumOfSlots.text!)!
@@ -205,8 +198,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         if(noOfSlots>0){
             for i in 0...noOfSlots-1{
                 let newTime = date.addingTimeInterval(30 * 60 * Double(i))
-                //print(newTime)
-                print("-key-", keyString, "dat", self.dateString, dateToString(date: newTime), val)
                 self.ref.child("timeSlots").child(self.keyString).child(self.selectedDateTextField.text!).child(dateToString(date: newTime)).setValue(val)
             }
             self.showAlert("Success","Time Slots Added for day " + "\(dateString)" , "Dismiss")
@@ -223,7 +214,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         formatter.maximumUnitCount = 2
         
         let string = formatter.string(from: previousDate, to: now)
-        print(string,"Difference")
         return string!
     }
     
