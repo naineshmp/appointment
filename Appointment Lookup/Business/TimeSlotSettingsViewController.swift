@@ -73,8 +73,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let endSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         endToolBar.setItems([ endSpaceButton, endDoneButton], animated: false)
         endToolBar.isUserInteractionEnabled = true
-        
-        let date = startPicker.date
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = "MM-dd-yyyy"
         self.dateString = dateFormat.string(from: Date())
@@ -119,7 +117,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func SaveToDB(_ sender: UIButton) {
-        var time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
+        let time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
         getKeyString(time: time)
     }
     
@@ -192,7 +190,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         if NumOfSlots.text != ""{
             val = Int(NumOfSlots.text!)!
         }
-        let currentTime = dateToString(date: self.startPicker.date)
         let date = self.startPicker.date
         
         if(noOfSlots>0){

@@ -94,7 +94,6 @@
             print("started with keystring", self.keyString )
             ref.child("timeSlots").child(self.keyString).child(keyDate).observeSingleEvent(of: .value, with: { (snapShot) in
                 let x = snapShot.value
-                print(x,"------ this needs to be checked")
                 if x is NSNull
                 {
                     let alertController = UIAlertController(title: "UNAVAILABLE", message: "SORRY WE ARE BOOKED FOR THE DAY!", preferredStyle: UIAlertControllerStyle.actionSheet)

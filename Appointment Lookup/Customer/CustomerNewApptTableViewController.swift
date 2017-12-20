@@ -53,7 +53,7 @@ class CustomerNewApptTableViewController: UITableViewController, UITextFieldDele
             showAlert("Success", "Appointment Successfully Added", "Dismiss")
             }
             else{
-                showAlert("Error", "Invalid Phone Number Example : +16194166883", "Dismiss")
+                showAlert("Error", "Invalid Phone Number Example : 6194166883", "Dismiss")
             }
             
         }

@@ -54,7 +54,7 @@ class RegisterController: UIViewController {
                 }
                 else
                 {
-                    let alertController = UIAlertController(title: "Error", message: "Invalid Phone Number. Example: +16194166883", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    let alertController = UIAlertController(title: "Error", message: "Invalid Phone Number. Example: 6194166883", preferredStyle: UIAlertControllerStyle.actionSheet)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
                     
                     self.present(alertController, animated: true, completion: nil)

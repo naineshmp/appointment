@@ -180,7 +180,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             let businessId = self.keyString
             ref.child("appointments").child(businessId).child(keyDate).child(appointmentId).removeValue { error, ref in
                 if error != nil {
-                    print("error \(error)")
                     let alertController = UIAlertController(title: "Error", message: "Appointment Delete failed!. Please try again", preferredStyle: UIAlertControllerStyle.actionSheet)
                     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alertController, animated: true, completion: nil)
