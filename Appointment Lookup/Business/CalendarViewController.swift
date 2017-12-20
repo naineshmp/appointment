@@ -15,9 +15,13 @@ import FirebaseAuth
 class CalendarViewController: UIViewController {
     
     @IBAction func SignOutClicked(_ sender: UIBarButtonItem) {
-        try!
-            Auth.auth().signOut()
-        performSegue(withIdentifier: "businessToSignIn", sender: self)
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        self.performSegue(withIdentifier: "businessToSignIn", sender: self)
     }
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     var ref: DatabaseReference!

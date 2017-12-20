@@ -17,9 +17,13 @@ class CategoryTableViewCell: UITableViewCell {
 class CategoriesViewController: UITableViewController {
     
     @IBAction func signOutClicked(_ sender: UIBarButtonItem) {
-        try!
-        Auth.auth().signOut()
-        performSegue(withIdentifier: "userToSignIn", sender: self)
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        self.performSegue(withIdentifier: "userToSignIn", sender: self)
     }
     //DataSource
     var categories: [String] = []

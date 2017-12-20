@@ -120,16 +120,19 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
         let reference = ref.child("businessUsers")
         let key = reference.childByAutoId().key;
         //creating artist with the given values
+        if(self.emailRegisterField.text != ""){
         let user = ["id":key,
                     "name": self.nameRegisterTextField.text!,
-                    "email": self.userName!,
+                    "email": self.emailRegisterField.text!,
                     "phone":self.phoneRegisterField.text!,
                     "isBusiness": true,
                     "businesstype": categoryText.text!
             ] as [String : Any]
         print("User added to Database")
         reference.child(key).setValue(user)
+        self.clearData()
         self.ref.child("timeSlots").child(key).child("user").setValue((Auth.auth().currentUser?.email)!)
+        }
     }
     
     func validatePhone(value: String) -> Bool {
@@ -137,6 +140,15 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         let result =  phoneTest.evaluate(with: value)
         return result
+    }
+    
+    func clearData(){
+        self.nameRegisterTextField.text = ""
+        self.emailRegisterField.text = ""
+        self.phoneRegisterField.text = ""
+        self.passwordRegisterField.text = ""
+        self.passwordRepeatRegisterField.text = ""
+        self.categoryText.text = ""
     }
     
     //function to add username and password to the database

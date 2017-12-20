@@ -36,7 +36,7 @@ class RegisterController: UIViewController {
     var passWordRepeat: String?
     
     func validatePhone(value: String) -> Bool {
-            let PHONE_REGEX = "^[0-9]{10}$"
+        let PHONE_REGEX = "^[0-9]{10}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         let result =  phoneTest.evaluate(with: value)
         return result
@@ -50,6 +50,7 @@ class RegisterController: UIViewController {
         if passWord==passWordRepeat {
             if(self.usernameTextField.text != ""  && self.phoneTextField.text != ""){
                 if(self.validatePhone(value: self.phoneTextField.text!)){
+                    print("------- user created called- ----- CODE")
                     registerUser()
                 }
                 else
@@ -80,19 +81,31 @@ class RegisterController: UIViewController {
         ref = Database.database().reference()
         let reference = ref.child("users")
         let key = reference.childByAutoId().key;
+        if(self.emailRegisterField.text! != ""){
         //creating artist with the given values
         let user = ["id":key,
                     "name": self.usernameTextField.text!,
-                    "email": self.userName!,
+                    "email": self.emailRegisterField.text!,
                     "phone":self.phoneTextField.text!,
                     "isBusiness": false
             ] as [String : Any]
         print("Customer added to Database")
         reference.child(key).setValue(user)
+        self.clearData()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func clearData(){
+        self.usernameTextField.text = ""
+        self.userName = ""
+        self.phoneTextField.text = ""
+        self.passwordRegisterField.text = ""
+        self.passwordRepeatRegisterField.text = ""
+        self.emailRegisterField.text = ""
     }
     
     //function to add username and password to the database
