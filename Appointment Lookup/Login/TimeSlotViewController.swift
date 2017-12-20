@@ -84,6 +84,10 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
     
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         var dateComponents = DateComponents()
         dateComponents.hour = 8

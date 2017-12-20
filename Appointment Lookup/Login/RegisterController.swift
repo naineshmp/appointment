@@ -35,6 +35,13 @@ class RegisterController: UIViewController {
     var passWord: String?
     var passWordRepeat: String?
     
+    func validatePhone(value: String) -> Bool {
+        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: value)
+        return result
+    }
+    
     @IBAction func registerButton(_ sender: UIButton) {
         userName = emailRegisterField.text!
         passWord = passwordRegisterField.text!
@@ -46,7 +53,25 @@ class RegisterController: UIViewController {
         print(passWordRepeat!)
         
         if passWord==passWordRepeat {
-            registerUser()
+            if(self.usernameTextField.text != ""  && self.phoneTextField.text != ""){
+                if(self.validatePhone(value: self.phoneTextField.text!)){
+                    registerUser()
+                }
+                else
+                {
+                    let alertController = UIAlertController(title: "Error", message: "Invalid Phone Number. Example: +16194166883", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+            else
+            {
+                let alertController = UIAlertController(title: "Error", message: "Invalid Data", preferredStyle: UIAlertControllerStyle.actionSheet)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
         else {
             let alertController = UIAlertController(title: "Error", message: "Password fields do not match. Please try again.", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -69,6 +94,10 @@ class RegisterController: UIViewController {
             ] as [String : Any]
         print("Customer added to Database")
         reference.child(key).setValue(user)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     //function to add username and password to the database

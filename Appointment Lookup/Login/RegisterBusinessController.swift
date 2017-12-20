@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource , UITextFieldDelegate{
     
-     var categories = ["Health", "Beautician", "Restaurants", "Event Planner", "Legal Services"]
+    var categories = ["Health", "Beautician", "Restaurants", "Event Planner", "Legal Services"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +37,13 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc func donePicker() {
         view.endEditing(true)
-     
+        
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {return 1}
     
@@ -48,7 +52,7 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {return categories[row]}
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {categoryText.text = categories[row]}
-
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,7 +87,25 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
         print(passWordRepeat!)
         
         if passWord==passWordRepeat {
-            registerUser()
+            if(self.nameRegisterTextField.text != ""  && self.phoneRegisterField.text != ""){
+                if(self.validatePhone(value: self.phoneRegisterField.text!)){
+                    registerUser()
+                }
+                else
+                {
+                    let alertController = UIAlertController(title: "Error", message: "Invalid Phone Number. Example: +16194166883", preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+            else
+            {
+                let alertController = UIAlertController(title: "Error", message: "Invalid Data", preferredStyle: UIAlertControllerStyle.actionSheet)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
         else {
             let alertController = UIAlertController(title: "Error", message: "Password fields do not match. Please try again.", preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -109,6 +131,12 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
         reference.child(key).setValue(user)
     }
     
+    func validatePhone(value: String) -> Bool {
+        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: value)
+        return result
+    }
     
     //function to add username and password to the database
     func registerUser() {
@@ -120,7 +148,6 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
                 Auth.auth().addStateDidChangeListener() { auth, user in
                     if user != nil {
                         self.performSegue(withIdentifier: "businessUsertoHome", sender: nil)
-                        print("Success-------")
                         self.addUser()
                     }
                 }
