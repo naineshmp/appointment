@@ -164,25 +164,9 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let times = String(hour!) + ":" + String(minute!)
         return times
     }
-//
-//    public func getKeyString(time: String){
-//        ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
-//            if let snapDict = snapShot.value as? [String:AnyObject]{
-//                for each in snapDict{
-//                    let userEmail = each.value["user"] as! String
-//                    if(userEmail == (Auth.auth().currentUser?.email)!)
-//                    {
-//                        self.keyString = each.key
-//                        self.setTimeSlots(time: time)
-//                    }
-//                }
-//            }
-//        })
-//    }
-    
-public func getKeyString(time: String){
+
+    public func getKeyString(time: String){
         ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
-            print(snapShot)
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
                     let userEmail = each.value["user"] as! String
@@ -192,22 +176,38 @@ public func getKeyString(time: String){
                         self.setTimeSlots(time: time)
                     }
                 }
-                self.setTimeSlot()
-            }
-            else{
-                self.setTimeSlot()
             }
         })
-        return;
     }
     
-    func setTimeSlot(){
-        ref = Database.database().reference()
-        let reference = ref.child("timeSlots")
-        let key = reference.childByAutoId().key;
-        keyString = key
-        self.ref.child("timeSlots").child(key).child("user").setValue((Auth.auth().currentUser?.email)!)
-    }
+//    public func getKeyString(time: String){
+//        ref.child("timeSlots").observeSingleEvent(of: .value, with: { (snapShot) in
+//            print(snapShot)
+//            if let snapDict = snapShot.value as? [String:AnyObject]{
+//                for each in snapDict{
+//                    let userEmail = each.value["user"] as! String
+//                    if(userEmail == (Auth.auth().currentUser?.email)!)
+//                    {
+//                        self.keyString = each.key
+//                        self.setTimeSlots(time: time)
+//                    }
+//                }
+//                self.setTimeSlot()
+//            }
+//            else{
+//                self.setTimeSlot()
+//            }
+//        })
+//        return;
+//    }
+//
+//    func setTimeSlot(){
+//        ref = Database.database().reference()
+//        let reference = ref.child("timeSlots")
+//        let key = reference.childByAutoId().key;
+//        keyString = key
+//        self.ref.child("timeSlots").child(key).child("user").setValue((Auth.auth().currentUser?.email)!)
+//    }
     
     
     func setTimeSlots(time :String){

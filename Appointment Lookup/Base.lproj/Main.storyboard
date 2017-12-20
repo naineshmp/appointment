@@ -145,11 +145,11 @@
                     <connections>
                         <outlet property="passwordField" destination="UY6-79-xuI" id="fnp-YP-bvJ"/>
                         <outlet property="usernameField" destination="WUv-YV-UvS" id="ynk-l1-57W"/>
-                        <segue destination="SMT-j6-2MA" kind="show" identifier="toRegisterBusinessController" id="1UI-U2-eod"/>
                         <segue destination="6nH-G1-ujo" kind="show" identifier="toRegisterController" id="3bi-gn-X8J"/>
-                        <segue destination="TlF-Ph-Noa" kind="show" identifier="signInToHome" id="p0n-nO-gTm"/>
+                        <segue destination="TlF-Ph-Noa" kind="presentation" identifier="signInToHome" id="p0n-nO-gTm"/>
                         <segue destination="CVz-Z1-QPn" kind="presentation" identifier="loginToBusiness" id="hhL-Db-vaJ"/>
                         <segue destination="F2A-KX-rGx" kind="show" identifier="toForgotPassword" id="ffq-2e-Wn2"/>
+                        <segue destination="SMT-j6-2MA" kind="show" identifier="toRegisterBusinessController" id="VQE-G0-ZdK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5JB-TY-d8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1049,7 +1049,7 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+19998889090" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qs2-48-PRB">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="9998889090" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qs2-48-PRB">
                                 <rect key="frame" x="14" y="390" width="345" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <nil key="textColor"/>
@@ -1187,7 +1187,7 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+19998889090" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qcz-DP-Bgi">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="9998889090" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Qcz-DP-Bgi">
                                 <rect key="frame" x="14" y="385" width="345" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <nil key="textColor"/>
@@ -1899,7 +1899,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="619-jk-huM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5184.8000000000002" y="-125.4872563718141"/>
+            <point key="canvasLocation" x="5094" y="-109"/>
         </scene>
         <!--Ib Calendar Data Source-->
         <scene sceneID="GmE-x9-ZOc">
@@ -2273,10 +2273,11 @@
         <image name="today" width="36" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="VJq-sL-064"/>
         <segue reference="J3e-2F-WUy"/>
         <segue reference="hhL-Db-vaJ"/>
-        <segue reference="ITj-qf-KNh"/>
+        <segue reference="tId-ca-Les"/>
         <segue reference="p0n-nO-gTm"/>
-        <segue reference="lGm-Us-09k"/>
+        <segue reference="muH-nK-VO3"/>
     </inferredMetricsTieBreakers>
 </document>

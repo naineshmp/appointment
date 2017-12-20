@@ -121,10 +121,10 @@ class TimeSlotViewController: UIViewController,UITableViewDelegate, UITableViewD
                         return;
                     }
                 }
-                self.setTimeSlot()
+                //self.setTimeSlot()
             }
             else{
-                self.setTimeSlot()
+               // self.setTimeSlot()
             }
         })
         return;

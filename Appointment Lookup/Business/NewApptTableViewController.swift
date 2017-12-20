@@ -175,6 +175,11 @@ class NewApptTableViewController: UITableViewController {
             ] as [String : Any]
         self.updateTimeSlot(selectedDate, selectedTime, slots-1)
         self.ref.child("appointments").child(self.keyString).child(self.selectedDate).childByAutoId().setValue(appointment)
+        let appointmentCustomerSide = [
+            "businessId": self.keyString,
+            "customerEmail": self.CustomerEmail.text!
+            ] as [String : Any]
+        self.ref.child("appointmentCustomerSide").child(self.keyString).setValue(appointmentCustomerSide)
         clearData()
     }
     

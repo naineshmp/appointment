@@ -129,6 +129,7 @@ class RegisterBusinessController: UIViewController,UIPickerViewDelegate, UIPicke
             ] as [String : Any]
         print("User added to Database")
         reference.child(key).setValue(user)
+        self.ref.child("timeSlots").child(key).child("user").setValue((Auth.auth().currentUser?.email)!)
     }
     
     func validatePhone(value: String) -> Bool {
