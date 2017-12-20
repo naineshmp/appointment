@@ -1,9 +1,9 @@
 //
 //  FirebaseHelper.swift
-//  Book My Appointment
+//  Appointment Lookup
 //
-//  Created by Hitesh Raichandani on 12/9/16.
-//  Copyright © 2016 Book My Appointment. All rights reserved.
+//  Created by Nainesh Patel on 12/15/17.
+//  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
 
 import Foundation

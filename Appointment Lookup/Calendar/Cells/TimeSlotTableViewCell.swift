@@ -1,9 +1,8 @@
-
 //
-//  UserCell.swift
-//  Assignment5
+//  NewApptTableViewController.swift
+//  Appointment Lookup
 //
-//  Created by Nainesh Patel on 11/11/17.
+//  Created by Nainesh Patel on 12/15/17.
 //  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
 

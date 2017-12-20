@@ -1,5 +1,5 @@
 //
-//  NewApptTableViewController.swift
+//  CustomerNewApptTableViewController.swift
 //  Appt
 //
 //  Created by Agustin Mendoza Romo on 5/17/17.

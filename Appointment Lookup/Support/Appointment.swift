@@ -1,5 +1,5 @@
 //
-//  TimeSlot.swift
+//  Appointment.swift
 //  Appointment Lookup
 //
 //  Created by Nainesh Patel on 12/12/17.
