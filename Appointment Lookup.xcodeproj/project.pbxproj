@@ -176,7 +176,6 @@
 				3E0D2BCF1FDDF24000E16750 /* CategoriesViewController.swift */,
 				3E0D2BD31FDE077F00E16750 /* ServiceProvidersListViewController.swift */,
 				3EABFBCB1FE49D18004A0BFA /* AppointmentDetailCustomer.swift */,
-				3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */,
 				3ED914FC1FE485E700B6BA24 /* TimeSlotCVCCustomer.swift */,
 				3E3390D01FE3AD0C007DFDE2 /* CustomerNewApptTableViewController.swift */,
 				3EF3C63E1FE48F2D000E2AFE /* CalendarViewController2.swift */,
@@ -189,6 +188,7 @@
 			children = (
 				3E31394A1FEA147900A3D442 /* Cells */,
 				3E62BC651FE1DF2500D4B339 /* NewApptTableViewController.swift */,
+				3EE96DA61FE389E900EFF89C /* TimeSlotSettingsViewController.swift */,
 				3EFB49A41FDE21D40004A1A0 /* CalendarViewController.swift */,
 				3E62BC671FE1E72800D4B339 /* TimeSlotsCVC.swift */,
 				3EAFD4D41FE22AAA00E03ED4 /* AppointmentDetailViewController.swift */,

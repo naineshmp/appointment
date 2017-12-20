@@ -11,13 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string:String) -> Bool {
-        return false
-    }
-    
     @IBOutlet weak var selectedDateTextField: UITextField!
-    
     @IBOutlet weak var endTimeSettings: UITextField!
     @IBOutlet weak var startTimeSettings: UITextField!
     let startPicker = UIDatePicker()
@@ -28,6 +22,10 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     var ref: DatabaseReference!
     var keyString:String = ""
     var dateString: String = ""
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string:String) -> Bool {
+        return false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,12 +120,8 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func SaveToDB(_ sender: UIButton) {
-        
         var time = offsetFrom(startDate: startPicker.date, endDate: endPicker.date)
         getKeyString(time: time)
-        
-        
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -146,6 +140,12 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let times = String(hour!) + ":" + String(minute!)
         endTimeSettings.text = times
         view.endEditing(true)
+    }
+    
+    func showAlert(_ title1: String,_ message : String,_ title2: String ){
+        let alertController = UIAlertController(title: title1, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alertController.addAction(UIAlertAction(title: title2, style: UIAlertActionStyle.default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @objc func selectedDatePickerDone() {
@@ -195,7 +195,6 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
         let minutes = Int(timeString[0])
         let noOfSlots = minutes!/30
         print(noOfSlots," == no of slots")
-     
         var val = 2
         if NumOfSlots.text != ""{
             val = Int(NumOfSlots.text!)!
@@ -210,7 +209,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
                 print("-key-", keyString, "dat", self.dateString, dateToString(date: newTime), val)
                 self.ref.child("timeSlots").child(self.keyString).child(self.selectedDateTextField.text!).child(dateToString(date: newTime)).setValue(val)
             }
-            print("Slots")
+            self.showAlert("Success","Time Slots Added for day " + "\(dateString)" , "Dismiss")
         }
     }
     func offsetFrom(startDate: Date, endDate : Date) -> String {
@@ -229,7 +228,7 @@ class TimeSlotSettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-      
+        
     }
     
     override func didReceiveMemoryWarning() {
