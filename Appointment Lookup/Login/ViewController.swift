@@ -6,6 +6,10 @@
 //  Copyright © 2017 Nainesh Patel. All rights reserved.
 //
 
+// REFERENCE
+// IOS-LOGIN-MASTER.. Dominic Heaton
+// REFERED FIREBASE REGISTRATION AND LOGIN....
+
 import UIKit
 import Firebase
 import FirebaseAuth
