@@ -96,6 +96,15 @@ class TimeSlotsCVC: UICollectionViewController {
         self.TimeSlotList.removeAll()
         print("started with keystring", self.keyString )
         ref.child("timeSlots").child(self.keyString).child(keyDate).observeSingleEvent(of: .value, with: { (snapShot) in
+                let x = snapShot.value
+                if x is NSNull
+                {
+                    let alertController = UIAlertController(title: "UNAVAILABLE", message: "No timeslot available! Please add one in timeslotsettings tab for day:  "+self.keyDate, preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            
             if let snapDict = snapShot.value as? [String:AnyObject]{
                 for each in snapDict{
                     let timeSlot = TimeSlot()
